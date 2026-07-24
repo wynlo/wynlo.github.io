@@ -37,16 +37,30 @@ export function VoxelScene({ variant, label, className }: { variant: VoxelVarian
     ref={container}
     role="img"
     aria-label={label}
-    className={className}
+    className={`cursor-grab active:cursor-grabbing ${className ?? ''}`}
     style={{ touchAction: 'none' }}
     onPointerEnter={() => setHovered(true)}
-    onPointerLeave={() => setHovered(false)}
+    onPointerLeave={(event) => {
+      setHovered(false)
+      drag.current = null
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+        event.currentTarget.releasePointerCapture(event.pointerId)
+      }
+    }}
     onPointerDown={(event) => {
       event.currentTarget.setPointerCapture(event.pointerId)
       drag.current = { x: event.clientX, y: event.clientY }
     }}
     onPointerMove={(event) => {
       if (!drag.current) return
+      const bounds = event.currentTarget.getBoundingClientRect()
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+        drag.current = null
+        if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+          event.currentTarget.releasePointerCapture(event.pointerId)
+        }
+        return
+      }
       const deltaX = event.clientX - drag.current.x
       const deltaY = event.clientY - drag.current.y
       drag.current = { x: event.clientX, y: event.clientY }
@@ -57,7 +71,9 @@ export function VoxelScene({ variant, label, className }: { variant: VoxelVarian
     }}
     onPointerUp={(event) => {
       drag.current = null
-      event.currentTarget.releasePointerCapture(event.pointerId)
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+        event.currentTarget.releasePointerCapture(event.pointerId)
+      }
     }}
     onPointerCancel={() => { drag.current = null }}
   >

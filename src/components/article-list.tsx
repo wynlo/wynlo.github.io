@@ -17,7 +17,7 @@ function ArticleCard({ article, latest }: { article: Article; latest: boolean })
       <span className="flex items-center gap-3">{article.category}{latest && <span className="bg-ink px-2 py-1 text-[9px] uppercase tracking-[.12em] text-paper">Latest</span>}</span>
       <span>{formatDate(article.publishedAt)} · {article.readingTime} min</span>
     </div>
-    <h3 className="mt-4 max-w-2xl text-lg leading-tight tracking-[-.015em] transition-opacity group-hover:opacity-50 md:text-xl">{article.title}</h3>
+    <h3 className="mt-4 max-w-2xl text-lg leading-tight tracking-[.005em] transition-opacity group-hover:opacity-50 md:text-xl">{article.title}</h3>
     <p className="mt-3 max-w-xl text-sm leading-6 text-muted">{article.excerpt}</p>
   </Link>
 }
@@ -25,7 +25,7 @@ function ArticleCard({ article, latest }: { article: Article; latest: boolean })
 function ArticleRow({ article, bordered = true }: { article: Article; bordered?: boolean }) {
   return <Link href={`/writing/${article.slug}`} className={`group block py-7${bordered ? ' border-b border-rule' : ''}`}>
     <div className="flex justify-between gap-4 text-[11px] text-muted"><span>{article.category}</span><span>{formatDate(article.publishedAt)} · {article.readingTime} min</span></div>
-    <h3 className="mt-4 max-w-2xl text-lg leading-tight tracking-[-.015em] transition-opacity group-hover:opacity-50 md:text-xl">{article.title}</h3>
+    <h3 className="mt-4 max-w-2xl text-lg leading-tight tracking-[.005em] transition-opacity group-hover:opacity-50 md:text-xl">{article.title}</h3>
     <p className="mt-3 max-w-xl text-sm leading-6 text-muted">{article.excerpt}</p>
   </Link>
 }

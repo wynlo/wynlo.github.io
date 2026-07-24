@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource/metropolis/400.css";
+@import "@fontsource/metropolis/500.css";
 
 @theme inline {
   --color-paper: var(--paper);
@@ -27,7 +29,7 @@
   --surface-strong: #d2d1cb;
   --surface-hover: #c9c8c2;
   --action-hover: #343432;
-  --font-ui: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-ui: "Metropolis", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-title: var(--font-ui);
   color-scheme: light;
 }
@@ -55,7 +57,7 @@ body {
   font-family: var(--font-ui);
   font-size: 16px;
   font-weight: 400;
-  letter-spacing: -.01em;
+  letter-spacing: .015em;
 }
 
 @layer base {
@@ -90,19 +92,19 @@ button { font: inherit; }
   text-transform: uppercase;
 }
 .display {
-  font-family: var(--font-ui);
+  font-family: var(--font-title);
   font-weight: 400;
-  letter-spacing: -.04em;
+  letter-spacing: .005em;
   line-height: 1.05;
 }
 .display i, .font-serif i { font-style: normal; }
 h1, h2, h3 {
-  font-family: var(--font-ui);
+  font-family: var(--font-title);
   font-weight: 400;
+  letter-spacing: .005em;
 }
 .hero-blueprint {
   pointer-events: none;
-  mask-image: linear-gradient(to bottom, transparent 0, black 8%, black 84%, transparent 100%);
 }
 .text-link {
   display: inline-flex;
@@ -119,12 +121,12 @@ h1, h2, h3 {
 .prose-editorial {
   font-family: var(--font-ui);
   font-size: clamp(1.05rem, 1.5vw, 1.2rem);
-  letter-spacing: -.015em;
+  letter-spacing: .015em;
   line-height: 1.75;
 }
 .prose-editorial p { margin: 0 0 1.65em; }
-.prose-editorial h2 { margin: 2em 0 .7em; font-size: clamp(1.6rem, 3vw, 2.35rem); line-height: 1.12; letter-spacing: -.02em; }
-.prose-editorial h3 { margin: 1.8em 0 .65em; font-size: clamp(1.3rem, 2vw, 1.7rem); line-height: 1.2; letter-spacing: -.02em; }
+.prose-editorial h2 { margin: 2em 0 .7em; font-size: clamp(1.6rem, 3vw, 2.35rem); line-height: 1.12; letter-spacing: .005em; }
+.prose-editorial h3 { margin: 1.8em 0 .65em; font-size: clamp(1.3rem, 2vw, 1.7rem); line-height: 1.2; letter-spacing: .005em; }
 .prose-editorial ul, .prose-editorial ol { margin: 0 0 1.65em; padding-left: 1.4em; }
 .prose-editorial ul { list-style: disc; }
 .prose-editorial ol { list-style: decimal; }

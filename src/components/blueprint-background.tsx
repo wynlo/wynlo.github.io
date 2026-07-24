@@ -104,6 +104,7 @@ export function BlueprintBackground() {
     }
 
     const draw = (time = 0) => {
+      context.globalCompositeOperation = 'source-over'
       context.clearRect(0, 0, width, height)
 
       context.lineWidth = 1
@@ -154,6 +155,34 @@ export function BlueprintBackground() {
         const pulse = reducedMotion ? 1 : 0.86 + Math.sin(time * 0.0014 + index) * 0.14
         drawCube(x, y, block.size, 0.08 * pulse)
       })
+
+      context.globalCompositeOperation = 'destination-in'
+      const layoutFade = width < 768
+        ? context.createLinearGradient(0, 0, 0, height)
+        : context.createLinearGradient(0, 0, width, 0)
+      if (width < 768) {
+        layoutFade.addColorStop(0, '#000')
+        layoutFade.addColorStop(0.5, '#000')
+        layoutFade.addColorStop(0.78, 'transparent')
+      } else {
+        layoutFade.addColorStop(0, 'transparent')
+        layoutFade.addColorStop(0.48, 'transparent')
+        layoutFade.addColorStop(0.68, '#000')
+        layoutFade.addColorStop(1, '#000')
+      }
+      context.fillStyle = layoutFade
+      context.fillRect(0, 0, width, height)
+
+      if (width >= 768) {
+        const edgeFade = context.createLinearGradient(0, 0, 0, height)
+        edgeFade.addColorStop(0, 'transparent')
+        edgeFade.addColorStop(0.08, '#000')
+        edgeFade.addColorStop(0.84, '#000')
+        edgeFade.addColorStop(1, 'transparent')
+        context.fillStyle = edgeFade
+        context.fillRect(0, 0, width, height)
+      }
+      context.globalCompositeOperation = 'source-over'
     }
 
     const resize = () => {

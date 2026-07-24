@@ -4,6 +4,7 @@ import { Mail, Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { LinkedInIcon, PotatoheadsIcon } from './brand-icons'
+import { SectionLink } from './section-link'
 import { ThemeLogoIcon } from './theme-logo-icon'
 import { ThemeToggle } from './theme-toggle'
 
@@ -18,9 +19,9 @@ export function Header() {
         <ThemeLogoIcon />
         wayneloh.dev
       </Link>
-      <nav className="hidden items-center gap-9 text-[13px] md:flex">
-        <Link className="transition-opacity hover:opacity-50" href="/#approach">How I work</Link>
-        <Link className="transition-opacity hover:opacity-50" href="/#about">About</Link>
+      <nav className="hidden items-center gap-9 text-[13px] tracking-[.025em] md:flex">
+        <SectionLink className="transition-opacity hover:opacity-50" id="approach">How I work</SectionLink>
+        <SectionLink className="transition-opacity hover:opacity-50" id="about">About</SectionLink>
         <Link className="transition-opacity hover:opacity-50" href="/writing">Writing</Link>
         <Link className="inline-flex items-center gap-2 text-muted transition-colors hover:text-ink" href="/studio"><PotatoheadsIcon size={17} />Potatoheads · Coming soon</Link>
         {linkedinUrl && <a className="grid size-9 place-items-center transition-opacity hover:opacity-50" href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="LinkedIn profile"><LinkedInIcon size={18} /></a>}
@@ -32,9 +33,9 @@ export function Header() {
           {mobileMenuOpen ? <X aria-hidden="true" size={22} /> : <Menu aria-hidden="true" size={22} />}
         </button>
         <div id="mobile-navigation" aria-hidden={!mobileMenuOpen} className={`mobile-menu-panel absolute left-0 right-0 top-full z-0 border-y border-rule bg-paper px-5 py-4${mobileMenuOpen ? ' is-open' : ''}`}>
-          <nav className="flex flex-col text-[17px] tracking-[-.01em]">
-            <Link className="border-b border-rule py-3.5 transition-opacity hover:opacity-50" href="/#approach" onClick={() => setMobileMenuOpen(false)}>How I work</Link>
-            <Link className="border-b border-rule py-3.5 transition-opacity hover:opacity-50" href="/#about" onClick={() => setMobileMenuOpen(false)}>About</Link>
+          <nav className="flex flex-col text-[17px] tracking-[.025em]">
+            <SectionLink className="border-b border-rule py-3.5 transition-opacity hover:opacity-50" id="approach" onClick={() => setMobileMenuOpen(false)}>How I work</SectionLink>
+            <SectionLink className="border-b border-rule py-3.5 transition-opacity hover:opacity-50" id="about" onClick={() => setMobileMenuOpen(false)}>About</SectionLink>
             <Link className="border-b border-rule py-3.5 transition-opacity hover:opacity-50" href="/writing" onClick={() => setMobileMenuOpen(false)}>Writing</Link>
             <Link className="flex items-center gap-2.5 border-b border-rule py-3.5 text-muted transition-colors hover:text-ink" href="/studio" onClick={() => setMobileMenuOpen(false)}><PotatoheadsIcon size={20} />Potatoheads <span className="ml-auto text-xs tracking-normal">Coming soon</span></Link>
             {linkedinUrl && <a className="flex items-center gap-2.5 border-b border-rule py-3.5 transition-opacity hover:opacity-50" href={linkedinUrl} target="_blank" rel="noreferrer" onClick={() => setMobileMenuOpen(false)}><LinkedInIcon size={19} />LinkedIn</a>}

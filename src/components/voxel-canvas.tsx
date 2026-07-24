@@ -5,10 +5,16 @@ import { useTheme } from 'next-themes'
 import { useEffect, useLayoutEffect, useMemo, useRef, useSyncExternalStore } from 'react'
 import * as THREE from 'three'
 
-export type VoxelVariant = 'pixel-robot' | 'pixel-cat' | 'light-bulb' | 'potato' | 'portal' | 'endless-stair' | 'cantilever'
+export type VoxelVariant = 'pixel-robot' | 'pixel-cat' | 'light-bulb' | 'potato' | 'shape' | 'build' | 'connect' | 'portal' | 'endless-stair' | 'cantilever'
 
-type VoxelPart = 'body' | 'secondary' | 'detail' | 'feet' | 'face' | 'mouth' | 'ray' | 'sprout' | 'accent'
-type Voxel = { x: number; y: number; z: number; t: number; tone?: number; part?: VoxelPart; suspended?: boolean }
+type VoxelPart = 'body' | 'secondary' | 'detail' | 'feet' | 'face' | 'mouth' | 'ray' | 'sprout' | 'accent' | 'brick-red' | 'brick-blue' | 'brick-yellow'
+type Voxel = { x: number; y: number; z: number; t: number; tone?: number; part?: VoxelPart; suspended?: boolean; group?: number }
+
+const RBY = {
+  red: '#c94a45',
+  blue: '#3f6eb5',
+  yellow: '#dbad3b',
+} as const
 
 // Deterministic generator so a scene renders identically on every visit.
 function rng(seed: number) {
@@ -155,6 +161,66 @@ function generate(variant: VoxelVariant): Voxel[] {
     for (const x of [4, 5, 8, 9]) for (let z = 2; z <= 4; z++) {
       voxels.push({ x, y: 0, z, t: 0, part: 'feet' })
     }
+  } else if (variant === 'shape') {
+    // Three fundamental forms overlap in depth as a compact geometric still life.
+    for (let y = 1; y <= 8; y++) for (let x = -6; x <= -2; x++) for (let z = -4; z <= 0; z++) {
+      if (((x + 4) / 2.5) ** 2 + ((z + 2) / 2.5) ** 2 <= 1) {
+        voxels.push({ x, y, z, t: 0, part: 'body', group: 0 })
+      }
+    }
+    for (let x = -3; x <= 3; x++) for (let y = 0; y <= 6; y++) for (let z = 0; z <= 6; z++) {
+      if ((x / 3.4) ** 2 + ((y - 3) / 3.4) ** 2 + ((z - 3) / 3.4) ** 2 <= 1) {
+        voxels.push({ x, y, z, t: 0, part: 'secondary', group: 1 })
+      }
+    }
+    for (let y = 0; y <= 7; y++) {
+      const halfWidth = Math.max(0, 4 - Math.floor(y / 2))
+      for (let x = -halfWidth; x <= halfWidth; x++) for (let z = -halfWidth; z <= halfWidth; z++) {
+        voxels.push({ x: x + 4, y: y + 1, z: z - 2, t: 0, part: 'accent', group: 2 })
+      }
+    }
+  } else if (variant === 'build') {
+    // Staggered toy bricks use raised voxel studs to make the interlocking system legible.
+    let brick = 0
+    const addBrick = (x: number, y: number, z: number, width: number, depth: number, part: VoxelPart, suspended = false) => {
+      const group = brick++
+      for (let bx = 0; bx < width; bx++) for (let by = 0; by < 2; by++) for (let bz = 0; bz < depth; bz++) {
+        voxels.push({ x: x + bx, y: y + by, z: z + bz, t: 0, part, suspended, group })
+      }
+      for (let bx = 0; bx < width; bx += 2) for (let bz = 0; bz < depth; bz += 2) {
+        voxels.push({ x: x + bx, y: y + 2, z: z + bz, t: 0, part, suspended, group })
+      }
+    }
+    addBrick(-6, 0, -2, 6, 4, 'brick-blue')
+    addBrick(0, 0, -2, 6, 4, 'brick-red')
+    addBrick(-4, 3, -2, 6, 4, 'brick-yellow')
+    addBrick(2, 3, -2, 4, 4, 'brick-blue')
+    addBrick(-6, 6, -2, 4, 4, 'brick-red')
+    addBrick(-2, 6, -2, 6, 4, 'brick-blue')
+    addBrick(-3, 11, -2, 6, 4, 'brick-yellow', true)
+  } else if (variant === 'connect') {
+    // Two upright links are joined by one horizontal link passing through both openings.
+    const addUprightLink = (centerX: number, part: VoxelPart, group: number) => {
+      for (let x = -4; x <= 4; x++) for (let y = -4; y <= 4; y++) {
+        const outer = (x / 4.4) ** 2 + (y / 4.4) ** 2 <= 1
+        const opening = (x / 2.25) ** 2 + (y / 2.25) ** 2 < 1
+        if (outer && !opening) {
+          for (let z = -1; z <= 1; z++) voxels.push({ x: centerX + x, y: y + 4, z, t: 0, part, group })
+        }
+      }
+    }
+    const addHorizontalLink = () => {
+      for (let x = -6; x <= 6; x++) for (let z = -4; z <= 4; z++) {
+        const outer = (x / 6.4) ** 2 + (z / 4.4) ** 2 <= 1
+        const opening = (x / 4.15) ** 2 + (z / 2.25) ** 2 < 1
+        if (outer && !opening) {
+          for (let y = -1; y <= 1; y++) voxels.push({ x, y: y + 4, z, t: 0, part: 'brick-blue', group: 1 })
+        }
+      }
+    }
+    addUprightLink(-7, 'brick-red', 0)
+    addHorizontalLink()
+    addUprightLink(7, 'brick-yellow', 2)
   } else if (variant === 'portal') {
     // Two unequal piers and an offset lintel form a doorway that changes shape in rotation.
     for (const x of [0, 1, 10, 11]) for (let z = 0; z < 3; z++) {
@@ -235,6 +301,7 @@ function Voxels({ voxels, variant, darkMode, active, hovered, reducedMotion }: {
   const palettes = useMemo(() => {
     const face = new THREE.Color(darkMode ? '#171716' : '#20201e')
     const white = new THREE.Color('#f4f4ef')
+    const processNeutral = new THREE.Color(darkMode ? '#aaa9a1' : '#c8c7bf')
     const neck = new THREE.Color(darkMode ? '#c4c4bd' : '#d4d4cc')
     const metal = new THREE.Color(darkMode ? '#8f8f88' : '#9f9f98')
     const neutralFeet = new THREE.Color(darkMode ? '#aaa9a1' : '#c8c7bf')
@@ -243,11 +310,13 @@ function Voxels({ voxels, variant, darkMode, active, hovered, reducedMotion }: {
       potato: new THREE.Color('#b58a5c'), feet: new THREE.Color('#806548'), sprout: new THREE.Color('#76956a'),
       robotBody: new THREE.Color('#e9ece8'), robotPanel: new THREE.Color('#315da8'), robotJoint: new THREE.Color('#3f4650'),
       robotFeet: new THREE.Color('#c94343'), robotAccent: new THREE.Color('#e4b83f'),
+      red: new THREE.Color(RBY.red), blue: new THREE.Color(RBY.blue), yellow: new THREE.Color(RBY.yellow),
     }
     return voxels.map((voxel) => {
       let resting = white
       if (voxel.part === 'face' || voxel.part === 'mouth') resting = face
       else if (voxel.part === 'ray') resting = hover.ray
+      else if (variant === 'shape' || variant === 'build' || variant === 'connect') resting = processNeutral
       else if (variant === 'light-bulb' && voxel.part === 'detail') resting = metal
       else if (variant === 'light-bulb' && voxel.part === 'secondary') resting = neck
       else if (variant === 'potato' && voxel.part === 'feet') resting = neutralFeet
@@ -258,6 +327,10 @@ function Voxels({ voxels, variant, darkMode, active, hovered, reducedMotion }: {
       else if (variant === 'potato' && voxel.part === 'feet') activeColor = hover.feet
       else if (variant === 'potato' && voxel.part !== 'face') activeColor = hover.potato
       else if (variant === 'light-bulb' && voxel.part === 'body') activeColor = hover.bulb
+      else if (variant === 'shape') activeColor = voxel.part === 'body' ? hover.blue
+        : voxel.part === 'secondary' ? hover.red : hover.yellow
+      else if (variant === 'build' || variant === 'connect') activeColor = voxel.part === 'brick-red' ? hover.red
+        : voxel.part === 'brick-yellow' ? hover.yellow : hover.blue
       else if (variant === 'pixel-robot' && voxel.part !== 'face') {
         activeColor = voxel.part === 'secondary' ? hover.robotPanel
           : voxel.part === 'detail' ? hover.robotJoint
@@ -320,13 +393,31 @@ function Voxels({ voxels, variant, darkMode, active, hovered, reducedMotion }: {
       const rawProgress = reducedMotion || assembled.current ? 1 : Math.min(1, Math.max(0, (assemblyElapsed.current - delay) / 1.05))
       const progress = 1 - Math.pow(1 - rawProgress, 3)
       const float = active && !reducedMotion && assembled.current && voxel.suspended ? Math.sin(elapsed * 1.15 + index) * 0.18 : 0
-      const wiggle = active && !reducedMotion && assembled.current && (voxel.part === 'detail' || voxel.part === 'sprout')
+      const wiggle = active && !reducedMotion && assembled.current && variant !== 'shape' && variant !== 'build' && (voxel.part === 'detail' || voxel.part === 'sprout')
         ? Math.sin(elapsed * 8 + index * 0.8) * 0.16 * excitement.current
         : 0
+      const brickGroup = voxel.group ?? 0
+      const brickDetach = variant === 'build' && assembled.current
+        ? excitement.current * (0.5 - Math.cos(elapsed * 2.4) * 0.5) * (0.75 + (brickGroup % 3) * 0.18)
+        : 0
+      const brickAngle = brickGroup * 2.17
+      const shapeGroup = voxel.group ?? 1
+      const shapeLift = variant === 'shape' && assembled.current
+        ? excitement.current * (0.35 + Math.sin(elapsed * 2.6 + shapeGroup * 2.1) * 0.3)
+        : 0
+      const shapeSpread = variant === 'shape' && assembled.current
+        ? excitement.current * (shapeGroup - 1) * 0.55
+        : 0
+      const chainShift = variant === 'connect' && assembled.current
+        ? excitement.current * Math.sin(elapsed * 2.2) * (shapeGroup - 1) * 0.65
+        : 0
+      const chainLift = variant === 'connect' && assembled.current
+        ? excitement.current * (0.5 - Math.cos(elapsed * 2.2) * 0.5) * (shapeGroup === 1 ? 0.45 : -0.15)
+        : 0
       position.set(
-        voxel.x - center.x + (1 - progress) * Math.sin(index * 2.17) * 2.4 + wiggle,
-        voxel.y - center.y - (1 - progress) * (4 + (index % 7) * 0.45) + float + Math.abs(wiggle) * 0.5,
-        voxel.z - center.z + (1 - progress) * Math.cos(index * 1.73) * 2.4,
+        voxel.x - center.x + (1 - progress) * Math.sin(index * 2.17) * 2.4 + wiggle + Math.cos(brickAngle) * brickDetach + shapeSpread + chainShift,
+        voxel.y - center.y - (1 - progress) * (4 + (index % 7) * 0.45) + float + Math.abs(wiggle) * 0.5 + Math.sin(brickAngle) * brickDetach * 0.65 + shapeLift + chainLift,
+        voxel.z - center.z + (1 - progress) * Math.cos(index * 1.73) * 2.4 + Math.sin(brickAngle * 1.3) * brickDetach * 0.65,
       )
       const cubeScale = 0.18 + progress * 0.82
       size.setScalar(cubeScale)
@@ -490,7 +581,17 @@ export default function VoxelCanvas({ variant = 'pixel-robot', active = true, ho
 
   const darkMode = resolvedTheme === 'dark'
 
-  return <Canvas events={safeEvents} shadows={darkMode ? false : 'percentage'} orthographic camera={{ position: [16, 14, 16], zoom: 34, near: 0.1, far: 100 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }} frameloop="demand">
+  return <Canvas
+    events={safeEvents}
+    shadows={darkMode ? false : 'percentage'}
+    orthographic
+    camera={{ position: [16, 14, 16], zoom: 34, near: 0.1, far: 100 }}
+    dpr={[1, 2]}
+    gl={{ antialias: true, alpha: true }}
+    onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
+    style={{ background: 'transparent' }}
+    frameloop="demand"
+  >
     <FrameController active={active} reducedMotion={reducedMotion} />
     <Fit frameSize={frameSize} />
     <ambientLight intensity={1.05} />
