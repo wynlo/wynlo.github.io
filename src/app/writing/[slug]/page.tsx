@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 type Props = { params: Promise<{ slug: string }> }
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 export const dynamicParams = false
 export function generateStaticParams() {
   return [...getArticles().map(({ slug }) => slug), ...Object.keys(articleRedirects)].map((slug) => ({ slug }))
@@ -22,7 +23,7 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticle(slug)
   if (!article) {
     const destination = articleRedirects[slug]
-    if (destination) return <RedirectPage destination={`/writing/${destination}/`} />
+    if (destination) return <RedirectPage destination={`${basePath}/writing/${destination}/`} />
     notFound()
   }
 

@@ -51,7 +51,7 @@ In the GitHub repository:
 | `NEXT_PUBLIC_STUDIO_URL` | Reserved external studio URL |
 | `NEXT_PUBLIC_STUDIO_NAME` | Studio name; defaults to Potatoheads |
 
-`NEXT_PUBLIC_SERVER_URL` is set automatically to `https://USERNAME.github.io` by the workflow.
+`NEXT_PUBLIC_SERVER_URL` and the project base path are derived automatically from the repository by the workflow.
 
 ## Verification
 

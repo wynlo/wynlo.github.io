@@ -6,14 +6,16 @@ import { ThemeFavicon } from '@/components/theme-favicon'
 import { ThemeProvider } from '@/components/theme-provider'
 import { InitialPageFade, TransitionProvider } from '@/components/transition-provider'
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3001'),
   title: { default: 'Wayne Loh | Building Technology That Earns Trust', template: '%s | Wayne Loh' },
   description: 'Building technology people understand, trust, and adopt through architecture, engineering, product, and brand thinking.',
   icons: {
     icon: [
-      { url: '/robot-icon-light.png', media: '(prefers-color-scheme: light)', type: 'image/png' },
-      { url: '/robot-icon-white-v2.png', media: '(prefers-color-scheme: dark)', type: 'image/png' },
+      { url: `${basePath}/robot-icon-light.png`, media: '(prefers-color-scheme: light)', type: 'image/png' },
+      { url: `${basePath}/robot-icon-white-v2.png`, media: '(prefers-color-scheme: dark)', type: 'image/png' },
     ],
   },
   openGraph: { type: 'website', title: 'Wayne Loh | Building Technology That Earns Trust', description: 'Building technology people understand, trust, and adopt through architecture, engineering, product, and brand thinking.' },

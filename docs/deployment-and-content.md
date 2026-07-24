@@ -1,21 +1,21 @@
 # Deployment and Content Management
 
-This guide covers deploying the site to a GitHub user Pages repository and managing articles with Pages CMS.
+This guide covers deploying the site to GitHub Pages and managing articles with Pages CMS.
 
 ## 1. Create the GitHub repository
 
-Create a public repository named exactly:
+This project currently uses the `landing-page` repository, which is published as a project Pages site at:
 
 ```text
-USERNAME.github.io
+https://USERNAME.github.io/landing-page/
 ```
 
-Replace `USERNAME` with your GitHub username. A user Pages repository is published at `https://USERNAME.github.io`.
+The deployment workflow detects the repository name and configures the asset and navigation paths automatically. It also supports a root user Pages repository named `USERNAME.github.io` without further changes.
 
 Push this project to the repository's `main` branch. If the remote is not configured yet:
 
 ```bash
-git remote add origin git@github.com:USERNAME/USERNAME.github.io.git
+git remote add origin git@github.com:USERNAME/landing-page.git
 git push -u origin main
 ```
 
@@ -34,11 +34,11 @@ git remote -v
 
 The workflow in `.github/workflows/deploy-pages.yml` runs whenever `main` changes. It builds the static site into `out` and deploys that directory to GitHub Pages.
 
-Open the repository's **Actions** tab to monitor the first deployment. Once it succeeds, open `https://USERNAME.github.io`.
+Open the repository's **Actions** tab to monitor the first deployment. Once it succeeds, open the URL shown by the deployment job.
 
 ## 3. Configure public site values
 
-The deployment automatically sets `NEXT_PUBLIC_SERVER_URL` to the GitHub user Pages URL.
+The deployment automatically sets `NEXT_PUBLIC_SERVER_URL` and `NEXT_PUBLIC_BASE_PATH` from the repository owner and name.
 
 To configure the optional contact and studio values:
 
@@ -88,7 +88,7 @@ building-reliable-software
 The resulting URL is:
 
 ```text
-https://USERNAME.github.io/writing/building-reliable-software/
+https://USERNAME.github.io/landing-page/writing/building-reliable-software/
 ```
 
 ## 6. Drafts and future dates
@@ -165,7 +165,7 @@ Open the repository's **Actions** tab and inspect the latest **Deploy GitHub Pag
 
 ### The Pages URL returns 404
 
-Confirm the repository is named `USERNAME.github.io`, the Pages source is **GitHub Actions**, and the deployment workflow completed successfully.
+Confirm the Pages source is **GitHub Actions** and the deployment workflow completed successfully. Use the URL shown by the deployment job.
 
 ### Contact links are missing
 
