@@ -15,7 +15,7 @@ export default function StudioPage() {
         <h1 className="display mt-7 text-[clamp(3rem,6vw,5.75rem)]">Potatoheads</h1>
         <p className="mt-7 max-w-lg text-lg leading-8 text-muted">An independent studio exploring software, products, and distinctive brands.</p>
         <p className="mt-9 text-sm font-medium uppercase tracking-[.12em]">Coming soon</p>
-        <Link className="text-link mt-12" href="/">Back to wayneloh.dev <span>→</span></Link>
+        <Link className="text-link mt-12" href="/">Back to Wayne Loh <span>→</span></Link>
       </div>
       <div className="order-1 h-[46svh] min-h-[340px] overflow-hidden md:order-2 md:h-[68vh] md:max-h-[720px]">
         <VoxelScene variant="potato" label="Irregular voxel potato with a small sprout, two stubby legs, and a pixel face, rendered in 3D" className="h-full w-full" />
