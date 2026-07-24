@@ -2,6 +2,8 @@
 
 Static editorial site built with Next.js, Markdown, Pages CMS, Tailwind CSS, and GitHub Pages.
 
+See [`docs/deployment-and-content.md`](docs/deployment-and-content.md) for the complete GitHub Pages and Pages CMS setup guide.
+
 ## Local development
 
 Use Node 22:

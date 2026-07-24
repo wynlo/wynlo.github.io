@@ -7,3 +7,4 @@ node_modules/
 *.db-wal
 npm-debug.log*
 .DS_Store
+.claude/
