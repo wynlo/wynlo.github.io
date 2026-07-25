@@ -47,6 +47,7 @@ jobs:
           NEXT_PUBLIC_LINKEDIN_URL: ${{ vars.NEXT_PUBLIC_LINKEDIN_URL }}
           NEXT_PUBLIC_STUDIO_URL: ${{ vars.NEXT_PUBLIC_STUDIO_URL }}
           NEXT_PUBLIC_STUDIO_NAME: ${{ vars.NEXT_PUBLIC_STUDIO_NAME }}
+          NEXT_PUBLIC_GOATCOUNTER_CODE: ${{ vars.NEXT_PUBLIC_GOATCOUNTER_CODE }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:

@@ -53,10 +53,17 @@ To configure the optional contact and studio values:
 | `NEXT_PUBLIC_LINKEDIN_URL` | LinkedIn profile URL |
 | `NEXT_PUBLIC_STUDIO_URL` | Reserved external studio URL |
 | `NEXT_PUBLIC_STUDIO_NAME` | Studio name; defaults to Potatoheads |
+| `NEXT_PUBLIC_GOATCOUNTER_CODE` | GoatCounter site code for analytics; defaults to `wynlo` when unset |
 
 These values are public and embedded in the generated site. Use repository variables, not secrets.
 
 After changing a variable, run the deployment again from **Actions → Deploy GitHub Pages → Run workflow**.
+
+### Analytics with GoatCounter
+
+The site can report pageviews and referrers to [GoatCounter](https://www.goatcounter.com/), which is free for personal sites and does not use cookies.
+
+The site code defaults to `wynlo`, so the dashboard lives at `https://wynlo.goatcounter.com`. To use a different GoatCounter site, set the `NEXT_PUBLIC_GOATCOUNTER_CODE` repository variable and run the deployment workflow again.
 
 ## 4. Connect Pages CMS
 

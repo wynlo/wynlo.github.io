@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { Analytics } from '@/components/analytics'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { ThemeFavicon } from '@/components/theme-favicon'
@@ -29,5 +30,5 @@ export const viewport: Viewport = {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth"><body><ThemeProvider><ThemeFavicon /><TransitionProvider><Header /><InitialPageFade>{children}</InitialPageFade><Footer /></TransitionProvider></ThemeProvider></body></html>
+  return <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth"><body><ThemeProvider><ThemeFavicon /><TransitionProvider><Header /><InitialPageFade>{children}</InitialPageFade><Footer /></TransitionProvider></ThemeProvider><Analytics /></body></html>
 }
