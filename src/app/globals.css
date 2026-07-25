@@ -48,7 +48,19 @@
   color-scheme: dark;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+}
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+:where(input, textarea, [contenteditable="true"], article, article *) {
+  -webkit-user-select: text;
+  user-select: text;
+}
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -136,8 +148,83 @@ h1, h2, h3 {
 .prose-editorial p:has(> em:only-child) { margin-top: -1.7rem; color: var(--muted); font-size: .72rem; letter-spacing: .01em; line-height: 1.5; }
 .prose-editorial blockquote { margin: 2.5em 0; padding-left: 1.5rem; border-left: 1px solid var(--ink); color: var(--muted); font-size: 1.15em; }
 .mermaid-figure { margin: 3rem 0; }
+.mermaid-frame { position: relative; }
 .mermaid-canvas { overflow-x: auto; border: 1px solid var(--rule); background: color-mix(in srgb, var(--paper) 94%, var(--ink)); padding: 1.5rem 1rem; }
 .mermaid-canvas svg { display: block; width: 100%; min-width: 34rem; height: auto; margin: 0 auto; }
+.mermaid-expand,
+.mermaid-dialog-action,
+.mermaid-dialog-fit,
+.mermaid-dialog-close {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.mermaid-expand { position: absolute; top: .75rem; right: .75rem; box-shadow: 0 2px 12px color-mix(in srgb, var(--ink) 12%, transparent); }
+.mermaid-expand:hover,
+.mermaid-dialog-action:hover:not(:disabled),
+.mermaid-dialog-fit:hover,
+.mermaid-dialog-close:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.mermaid-dialog-action:disabled { cursor: not-allowed; opacity: .35; }
+.mermaid-dialog-overlay { position: fixed; inset: 0; z-index: 90; background: color-mix(in srgb, var(--dark) 82%, transparent); }
+.mermaid-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+.mermaid-dialog-header {
+  display: grid;
+  flex: none;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: calc(4.25rem + env(safe-area-inset-top));
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--rule);
+  padding: calc(.75rem + env(safe-area-inset-top)) calc(1rem + env(safe-area-inset-right)) .75rem calc(1rem + env(safe-area-inset-left));
+}
+.mermaid-dialog-title { min-width: 0; margin: 0; overflow: hidden; font-size: .78rem; font-weight: 500; letter-spacing: .08em; line-height: 1.4; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+.mermaid-dialog-actions { display: flex; height: 2.75rem; align-items: stretch; gap: .5rem; }
+.mermaid-dialog-zoom-controls { display: inline-grid; height: 2.75rem; grid-template-columns: 2.625rem 3.75rem 2.625rem; align-items: stretch; border: 1px solid var(--rule); background: var(--paper); }
+.mermaid-dialog-zoom-controls .mermaid-dialog-action { width: 100%; height: 100%; flex: none; border: 0; }
+.mermaid-dialog-zoom-controls .mermaid-dialog-action:first-child { border-right: 1px solid var(--rule); }
+.mermaid-dialog-zoom-controls .mermaid-dialog-action:last-child { border-left: 1px solid var(--rule); }
+.mermaid-dialog-zoom { display: inline-flex; min-width: 0; height: 100%; align-items: center; justify-content: center; color: var(--muted); font-size: .7rem; font-variant-numeric: tabular-nums; line-height: 1; text-align: center; }
+.mermaid-dialog-fit,
+.mermaid-dialog-close { width: 2.75rem; height: 2.75rem; flex: none; }
+.mermaid-dialog-canvas {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  cursor: grab;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+.mermaid-dialog-canvas.is-dragging { cursor: grabbing; }
+.mermaid-dialog-canvas:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
+.mermaid-dialog-stage {
+  display: grid;
+  min-width: 100%;
+  min-height: 100%;
+  place-items: center;
+  padding: 2rem max(1.25rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+}
+.mermaid-dialog-diagram { display: block; max-width: none; max-height: none; }
+.mermaid-dialog-diagram svg { display: block; width: 100%; max-width: none !important; height: 100%; max-height: none !important; margin: auto; }
 .mermaid-figure figcaption { margin-top: .7rem; color: var(--muted); font-size: .72rem; letter-spacing: .01em; line-height: 1.5; }
 .mermaid-fallback { overflow-x: auto; border: 1px solid var(--rule); padding: 1rem; font-size: .8rem; line-height: 1.5; }
 .code-sample { margin: 2.5rem 0; border: 1px solid var(--rule); background: color-mix(in srgb, var(--paper) 94%, var(--ink)); }
@@ -185,6 +272,10 @@ h1, h2, h3 {
 
 @media (max-width: 767px) {
   .section-backdrop { display: none; }
+  .mermaid-dialog-header { gap: .5rem; padding-right: calc(.75rem + env(safe-area-inset-right)); padding-left: calc(.75rem + env(safe-area-inset-left)); }
+  .mermaid-dialog-actions { gap: .25rem; }
+  .mermaid-dialog-zoom-controls { grid-template-columns: 2.5rem 3.25rem 2.5rem; }
+  .mermaid-dialog-stage { padding: 1.25rem max(.75rem, env(safe-area-inset-right)) max(1.25rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left)); }
 }
 
 :where(a, button, summary):focus-visible {

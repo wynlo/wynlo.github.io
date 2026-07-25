@@ -37,30 +37,22 @@ export function VoxelScene({ variant, label, className }: { variant: VoxelVarian
     ref={container}
     role="img"
     aria-label={label}
-    className={`cursor-grab active:cursor-grabbing ${className ?? ''}`}
-    style={{ touchAction: 'none' }}
+    draggable={false}
+    className={`select-none cursor-grab active:cursor-grabbing ${className ?? ''}`}
+    style={{ touchAction: 'none', WebkitUserSelect: 'none' }}
     onPointerEnter={() => setHovered(true)}
-    onPointerLeave={(event) => {
+    onPointerLeave={() => {
       setHovered(false)
-      drag.current = null
-      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-        event.currentTarget.releasePointerCapture(event.pointerId)
-      }
     }}
     onPointerDown={(event) => {
+      if (!event.isPrimary) return
+      event.preventDefault()
       event.currentTarget.setPointerCapture(event.pointerId)
       drag.current = { x: event.clientX, y: event.clientY }
     }}
     onPointerMove={(event) => {
       if (!drag.current) return
-      const bounds = event.currentTarget.getBoundingClientRect()
-      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
-        drag.current = null
-        if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-          event.currentTarget.releasePointerCapture(event.pointerId)
-        }
-        return
-      }
+      event.preventDefault()
       const deltaX = event.clientX - drag.current.x
       const deltaY = event.clientY - drag.current.y
       drag.current = { x: event.clientX, y: event.clientY }
@@ -76,6 +68,8 @@ export function VoxelScene({ variant, label, className }: { variant: VoxelVarian
       }
     }}
     onPointerCancel={() => { drag.current = null }}
+    onLostPointerCapture={() => { drag.current = null }}
+    onDragStart={(event) => event.preventDefault()}
   >
     {hasEntered && <VoxelCanvas variant={variant} active={active} hovered={hovered} rotation={rotation} />}
   </div>
