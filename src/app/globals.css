@@ -131,10 +131,12 @@ h1, h2, h3 {
 .text-link span { transition: transform .2s ease; }
 .text-link:hover span { transform: translateX(.2rem); }
 .prose-editorial {
+  min-width: 0;
   font-family: var(--font-ui);
   font-size: clamp(1.05rem, 1.5vw, 1.2rem);
   letter-spacing: .015em;
   line-height: 1.75;
+  overflow-wrap: break-word;
 }
 .prose-editorial p { margin: 0 0 1.65em; }
 .prose-editorial h2 { margin: 2em 0 .7em; font-size: clamp(1.6rem, 3vw, 2.35rem); line-height: 1.12; letter-spacing: .005em; }
