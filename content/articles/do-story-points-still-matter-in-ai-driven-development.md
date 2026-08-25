@@ -1,209 +1,60 @@
 ---
 title: "Do Story Points Still Matter in AI-Driven Development?"
 slug: "do-story-points-still-matter-in-ai-driven-development"
-subtitle: "AI changes implementation speed, but it does not remove uncertainty, coordination, or the need to prove that a change is correct."
-excerpt: "How story points can remain useful in AI-driven development when teams stop treating them as productivity and start using them to discuss uncertainty."
+subtitle: "Code volume was always a weak signal of delivery effort. AI just made it useless."
+excerpt: "What story points can still do once agents make implementation cheap: surface the uncertainty that remains, not measure the typing that disappeared."
 category: "Engineering"
 publishedAt: "2026-07-25T03:00:00.000Z"
-readingTime: 7
+readingTime: 4
 featured: false
 draft: false
 ---
 
-Coding agents can turn a well-understood change into working code in minutes. They can also spend an afternoon exploring the wrong part of a repository, reproduce an existing abstraction under a new name, or produce an implementation that looks complete until somebody tries to verify it.
+A coding agent can turn a well-understood change into working code in minutes. It can also spend an afternoon exploring the wrong part of a repository, or produce something that looks complete until somebody tries to verify it.
 
-That variability raises an obvious question for teams that use story points: if AI changes how quickly code can be produced, do points still mean anything?
+So do story points still mean anything?
 
-They can, but only if the team is clear about what it is estimating.
+They can, but only for what they were supposed to measure in the first place. Story points were never a reliable measure of typing time. Used well, they give a team a shared language for how uncertain a piece of work is. Used badly, they become a disguised deadline or a productivity score. AI makes the difference hard to ignore, because the typing is now nearly free and the uncertainty is not.
 
-Story points were never a reliable measure of how many hours somebody would spend typing code. At their best, they give a team a relative language for discussing complexity, effort, and uncertainty. At their worst, they become a disguised deadline, a productivity score, or a way to compare teams whose scales have nothing in common.
+## The work didn't disappear, it moved
 
-AI makes that distinction harder to ignore. Code generation is becoming cheaper. Understanding the change, fitting it into the system, and establishing that it is safe remain expensive.
-
-## AI changes where the work happens
-
-In a conventional development task, implementation may occupy a visible share of the elapsed time. A developer explores the code, makes design decisions, writes the change, tests it, and responds to review.
-
-An agent can compress parts of implementation. It can generate a controller, write a mapping function, update a group of call sites, or produce a first set of tests much faster than a person working line by line.
-
-The rest of the delivery system does not automatically become faster with it.
-
-```mermaid
-flowchart LR
-  Task[Requested change] --> Discovery[Discover intent and relevant code]
-  Discovery --> Decisions[Make product and design decisions]
-  Decisions --> Generation[Generate implementation]
-  Generation --> Review[Review and correct]
-  Review --> Validation[Validate behaviour and integration]
-  Validation --> Release[Release and observe]
-
-  AI[AI assistance] -. compresses .-> Discovery
-  AI -. compresses .-> Generation
-  AI -. assists .-> Review
-  AI -. assists .-> Validation
-```
-
-*AI can compress individual activities, but the change still has to pass through the complete delivery system.*
-
-Sometimes the work disappears. A routine mechanical change may genuinely become smaller from beginning to end. Sometimes the work moves. Time saved during generation is spent reviewing a larger diff, correcting an assumption, strengthening tests, or investigating an unexpected interaction.
-
-This is why estimating only the apparent coding effort becomes less useful in an AI-driven workflow. The amount of code is a weak signal for the amount of work required to deliver it confidently.
-
-## Story points should describe the delivery problem
-
-Consider a request to add a cancellation reason to an order.
-
-The visible implementation might be small: add a field, update an endpoint, persist the value, and display it. An agent could generate those edits quickly. But the delivery problem may include questions that are not visible in the request:
+Consider a request to add a cancellation reason to an order. The implementation is small: a field, an endpoint change, persistence, display. An agent generates it in one pass. The delivery problem is everything the request didn't say:
 
 - Can every order be cancelled, or only orders in particular states?
 - Is the reason free text, a controlled value, or both?
-- Does changing the database require a staged migration?
-- Must the value appear in events, reports, and support tools?
-- Does it contain personal or sensitive information?
-- Which existing clients will encounter the new contract?
-- What evidence is required before the team can release it?
+- Does the database change need a staged migration?
+- Must the value flow into events, reports, and support tools?
+- Is it personal data?
+- Which existing clients hit the changed contract?
+- What evidence does the team need before releasing it?
 
-Those questions determine the size of the work more than the time needed to generate the first implementation.
+Those questions determine the size of the work, and none of them shows up in the diff. Estimating how long the code takes to write was always a rough proxy for delivery effort. Once an agent does the writing, it stops being a proxy for anything.
 
-```mermaid
-flowchart TD
-  Points[Relative story size] --> Ambiguity[Requirement ambiguity]
-  Points --> Architecture[Architectural uncertainty]
-  Points --> Integration[Integration complexity]
-  Points --> Validation[Difficulty of validation]
-  Points --> Risk[Operational, security, and compliance risk]
-  Points --> Coordination[Dependencies and human decisions]
+This is also why AI is not a fixed multiplier you can bake into the scale. The same story is small in a repository with clear boundaries, current docs, and fast tests, and large in one with duplicated rules and slow feedback. How much leverage an agent gives you is a property of the codebase more than the model. And if similar stories keep getting genuinely smaller because the codebase improved, that shows up in cycle time without anyone re-labelling the points.
 
-  Typing[Code production effort] -. smaller signal with AI .-> Points
-```
+## The disagreement is the product
 
-*In an AI-driven team, story size is more useful as a view of unresolved delivery uncertainty than as a view of typing effort.*
+When one engineer says two and another says eight, averaging them wastes the moment. The gap usually means something like this: one of them assumed a backward-compatible schema change, and the other expects a coordinated client migration. An agent can execute either approach. It cannot make a decision the team hasn't made.
 
-This does not require a new point scale. It requires a better estimation conversation.
-
-When one person sees a two and another sees an eight, the useful outcome is not the average. It is discovering that one person assumed a backward-compatible schema change while another expects a coordinated client migration. AI may help execute either approach, but it cannot remove a decision the team has not made.
-
-## The same story can have different AI leverage
-
-AI does not provide a fixed productivity multiplier. Its effectiveness depends on the environment in which it works.
-
-In a repository with clear package ownership, current documentation, narrow interfaces, representative tests, and fast feedback, an agent can locate the right boundary and verify a change with relatively little exploration. In a repository with duplicated rules, hidden runtime wiring, stale documentation, and slow tests, the same agent has to infer more and can prove less.
-
-```mermaid
-flowchart LR
-  Story[Same requested change] --> Ready[Agent-ready repository]
-  Story --> Unready[Low-readiness repository]
-
-  Ready --> R1[Clear ownership and boundaries]
-  Ready --> R2[Current, searchable context]
-  Ready --> R3[Focused tests and fast feedback]
-  R1 --> Confident[Shorter path to confidence]
-  R2 --> Confident
-  R3 --> Confident
-
-  Unready --> U1[Scattered business rules]
-  Unready --> U2[Implicit dependencies]
-  Unready --> U3[Weak or expensive validation]
-  U1 --> Uncertain[More discovery and rework]
-  U2 --> Uncertain
-  U3 --> Uncertain
-```
-
-*AI leverage is a property of the delivery environment, not only of the model.*
-
-This creates a problem if teams quietly change the meaning of their points after adopting AI. A story that used to be five points may now take less implementation time, but assigning it two points simply because an agent writes it faster can erase the integration and validation risks that remain.
-
-It also creates an opportunity. If similar work becomes consistently smaller because the team improved its tests, documentation, architecture, and tooling, that is real evidence that the delivery system has improved. The improvement should appear first in cycle time and predictability. The team can then recalibrate its local estimation habits if doing so helps planning.
-
-## Do not convert AI output into velocity
-
-The most damaging use of story points is as a productivity target. AI makes that use even easier to game.
-
-If a team is expected to increase velocity after receiving coding agents, it can respond by completing more small tickets, splitting work differently, inflating estimates, or accepting generated changes before they are properly understood. The reported number rises even if review queues grow, defects escape, and engineers spend more time correcting work after it is counted as complete.
-
-Lines of generated code, agent tasks completed, suggestion acceptance, and points delivered are all measures of activity. None establishes that customers received value or that the organisation can deliver changes more reliably.
-
-Velocity also remains local to the team that created it. Two teams may use different point scales, definitions of done, repositories, models, permissions, review standards, and deployment processes. AI increases the number of variables, making cross-team comparison less meaningful rather than more.
-
-Points should not be used to evaluate individuals either. A developer who rejects a plausible but unsafe agent-generated change may deliver fewer visible points while preventing substantially more work.
-
-## Separate estimation, forecasting, and value
-
-Teams often ask story points to answer three different questions:
-
-1. How uncertain or difficult does this work appear?
-2. When is a collection of work likely to be finished?
-3. Was completing it worthwhile?
-
-One number cannot answer all three.
-
-Story points can support the first question by exposing assumptions and relative uncertainty. Historical flow data is more useful for the second. Product and operational outcomes are needed for the third.
-
-```mermaid
-flowchart LR
-  Planning[Planning conversation] --> Points[Relative size]
-  Points --> Uncertainty[Shared view of uncertainty]
-
-  Delivery[Completed work] --> Flow[Cycle time, throughput, and work-item age]
-  Flow --> Forecast[Probabilistic delivery forecast]
-
-  Release[Released change] --> Outcomes[Customer, business, and operational outcomes]
-
-  Uncertainty --> Decision[Prioritisation and delivery decisions]
-  Forecast --> Decision
-  Outcomes --> Learning[Product learning]
-  Learning --> Planning
-```
-
-*Estimation supports conversation, flow supports forecasting, and observed outcomes show whether the work mattered.*
-
-For forecasting, a team can use the throughput and cycle times of completed work to answer questions such as: how likely are we to finish these items by a given date? That forecast still contains uncertainty, but it is based on how work moves through the actual system, including agent use, review, testing, dependencies, and release constraints.
-
-For value, the team needs a measure connected to the reason for making the change. That might be successful task completion, reduced support demand, conversion, reliability, recovery time, or compliance risk retired. Delivering eight points does not tell the team whether any of those changed.
-
-## What should happen during estimation?
-
-If a team keeps story points, its estimation conversation should account for how the work will be completed without trying to predict every prompt or tool call.
-
-Useful questions include:
+That conversation is the part of estimation worth keeping. The questions that make it work in an AI-driven team:
 
 - Is the desired behaviour clear enough to verify?
-- Is there an established pattern the agent can follow?
-- Which system boundaries and integrations will change?
-- Can the relevant behaviour be tested in isolation?
-- How much generated code will require specialist review?
-- Are there migrations, rollout constraints, or irreversible decisions?
-- Does the task depend on information or approval outside the team?
-- What would make us confident enough to release it?
+- Is there an established pattern the agent can follow, or is this new ground?
+- Which boundaries and integrations change?
+- How much of the generated code needs specialist review?
+- Are there migrations, rollout constraints, or irreversible steps?
+- Does anything depend on a decision or approval outside the team?
 
-The answers may reveal that the work should be split. A discovery item can resolve an unknown contract before implementation. A migration can be separated from its product use. A broad change can be divided into independently releasable slices.
+Often these questions show that the work should be split: a discovery item to resolve an unknown contract, or a migration separated from its product use. Finding that out is worth more than settling whether the number is five or eight.
 
-That is more valuable than debating whether the final number is five or eight. The purpose of estimation is to improve the team's understanding and choices before work begins.
+## Don't convert agent output into velocity
 
-## A practical way to evolve story points
+The most damaging use of points is as a productivity target, and AI makes that use easier to game. A team told to show velocity gains from its agent investment can split tickets smaller, inflate estimates, or accept generated changes before understanding them. The number goes up while review queues grow and defects escape. A developer who rejects a plausible but unsafe generated change delivers fewer visible points and prevents far more work.
 
-Teams do not need to remove story points immediately to adapt to AI-driven development. They can make a few deliberate changes.
+Points also can't answer the questions organisations most want them to answer. If the question is when the work will be done, throughput and cycle time from the actual delivery system (agent use, review, and release constraints included) forecast better than any point total. If the question is whether the work was worth doing, you need an outcome connected to why the change was made. Eight points delivered says nothing about either.
 
-First, stop using velocity as a target or a comparison between teams. A relative, local planning tool should not become an organisational productivity score.
+## What to actually change
 
-Second, define points around the complete path to done. Generated code has no special status. Review, correction, testing, integration, deployment, and required decisions are part of the story.
+Keep points, if you keep them, for the planning conversation only. Define them around the full path to done, where generated code has no special status and review, correction, and validation are part of the story. Stop using velocity as a target or a cross-team comparison. Forecast from flow metrics instead, and track rework and escaped defects, because that is where any claim that the agent made you faster actually gets tested.
 
-Third, use estimation disagreements to uncover assumptions. Record important unknowns or split the work rather than negotiating the number until everybody appears to agree.
-
-Fourth, use flow metrics for forecasting. Track cycle time, throughput, work-item age, blocked time, and review time. Watch whether AI reduces elapsed delivery time or merely moves the queue.
-
-Fifth, inspect quality and rework. Escaped defects, reopened items, rollback rates, and follow-up corrections help show whether apparent speed is sustainable.
-
-Finally, connect released work to an outcome. That keeps both points and AI output subordinate to the reason the work exists.
-
-## The value that remains
-
-Story points still have value in AI-driven development when they make uncertainty discussable.
-
-They can help a team notice that a small code change crosses a dangerous boundary, that an apparently large change follows a safe mechanical pattern, or that the main obstacle is a product decision rather than implementation. They can create the conversation in which assumptions become visible before an agent turns them into code.
-
-They lose that value when they are treated as hours, output, performance, or proof of an AI investment.
-
-The better question is no longer, "How much effort will it take us to write this code?" It is, "How much uncertainty must we resolve before we can confidently deliver this change?"
-
-In AI-driven development, producing code is increasingly cheap. Establishing that it is the right code, in the right place, with acceptable consequences remains the expensive part.
+Estimation used to ask how much effort the code would take to write. The more useful question now is how much uncertainty the team has to resolve before it can confidently ship the change. Producing code is cheap. Knowing it is the right code, in the right place, with acceptable consequences, is what you are sizing.

@@ -159,7 +159,7 @@ For a large monorepo, I would not create one enormous root architecture file. Th
 
 This hierarchy also helps context control. An agent can read the root routing table, follow one link, and stop once it reaches the owning boundary instead of loading architecture material for unrelated systems.
 
-The file should describe the normal path, not every class. Graphify and source search are better for exhaustive relationships. ARCHITECTURE.md should provide the stable vocabulary and landmarks that make those searches precise.
+The file should describe the normal path, not every class. A generated code graph and source search are better for exhaustive relationships. ARCHITECTURE.md should provide the stable vocabulary and landmarks that make those searches precise.
 
 ## Update docs during the task with a skill
 
@@ -213,9 +213,9 @@ The skill also needs a stop condition. If source, tests, requirements, and docs 
 
 Agent instructions can make this automatic: after code validation, run the documentation-impact skill; after documentation changes, refresh the generated graph. That creates a small feedback loop in which code, tests, curated context, and generated context move together.
 
-## Graphify narrows discovery further
+## A generated code graph narrows discovery further
 
-The package tree and docs describe the intended architecture. Graphify can generate a persistent graph from the code and documentation to show how the repository is connected now.
+The package tree and docs describe the intended architecture. A code-graph tool can generate a persistent graph from the code and documentation to show how the repository is connected now. I use Graphify for this.
 
 For a Spring application, that graph can help an agent locate controllers, use-case interfaces, service implementations, repository ports, adapters, configuration, and high-impact shared modules before opening every file.
 
