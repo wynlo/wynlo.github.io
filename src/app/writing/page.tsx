@@ -12,7 +12,7 @@ export default function WritingPage() {
       <p className="max-w-md self-end text-base leading-7 text-muted">Notes on architecture, engineering, product, brand, work, and the decisions connecting them.</p>
     </header>
     {articles.length > 0
-      ? <section className="pt-16 md:pt-24"><ArticleList items={articles} featured /></section>
-      : <section className="pt-16 md:pt-24"><p className="eyebrow text-muted">Coming soon</p><p className="mt-6 max-w-xl text-2xl leading-[1.4] tracking-[.015em] md:text-3xl">Notes on what I’m building, the decisions behind it, and what I’m learning along the way.</p></section>}
+      ? <section className="pt-16 md:pt-24"><ArticleList items={articles} /></section>
+      : <section className="pt-16 md:pt-24"><p className="eyebrow text-muted">Coming soon</p><p className="mt-6 max-w-xl text-2xl leading-[1.4] md:text-3xl">Notes on what I’m building, the decisions behind it, and what I’m learning along the way.</p></section>}
   </div>
 }

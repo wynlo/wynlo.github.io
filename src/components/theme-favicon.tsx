@@ -12,8 +12,8 @@ export function ThemeFavicon() {
     if (!resolvedTheme) return
 
     const href = resolvedTheme === 'dark'
-      ? `${basePath}/robot-icon-white-v2.png?theme=dark-v2`
-      : `${basePath}/robot-icon-light.png?theme=light`
+      ? `${basePath}/robot-logo-helmet-dark.png?theme=dark`
+      : `${basePath}/robot-logo-helmet-light.png?theme=light`
     document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]').forEach((icon) => icon.remove())
 
     const icon = document.createElement('link')

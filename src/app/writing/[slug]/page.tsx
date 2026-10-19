@@ -29,7 +29,7 @@ export default async function ArticlePage({ params }: Props) {
 
   return <article>
     <header className="container-page pt-16 md:pt-24">
-      <div className="mx-auto max-w-5xl text-center"><p className="eyebrow text-muted">{article.category}</p><h1 className="display mt-6 text-3xl leading-[1.08] sm:text-4xl md:text-5xl lg:text-6xl">{article.title}</h1><p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-muted">{article.subtitle || article.excerpt}</p><p className="mt-8 text-[11px] text-muted">{formatDate(article.publishedAt)} · {article.readingTime} min read</p></div>
+      <div className="mx-auto max-w-5xl text-center"><p className="eyebrow text-muted">{article.category}</p><h1 className="display mt-6 text-3xl leading-[1.08] sm:text-4xl md:text-5xl lg:text-6xl">{article.title}</h1><p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-muted">{article.subtitle || article.excerpt}</p><p className="mt-8 text-[11px] text-muted"><span className="tabular">{formatDate(article.publishedAt)}</span> · {article.readingTime} min read</p></div>
     </header>
     <section className="container-page grid gap-10 py-16 lg:grid-cols-[60px_minmax(0,720px)] lg:justify-center lg:py-24"><ShareTools title={article.title}/><div className="prose-editorial min-w-0"><ArticleRichText content={article.content} /></div></section>
   </article>

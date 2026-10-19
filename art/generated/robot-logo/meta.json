@@ -1,0 +1,153 @@
+{
+  "target": "robot-logo",
+  "compose": "sheet",
+  "kind": "icon",
+  "game": "brand",
+  "warnings": [],
+  "assets": {
+    "helmet-curl": {
+      "name": "helmet-curl",
+      "status": "approved",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/cashmere-mark.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "e21adce69bfadb98"
+        }
+      ],
+      "sourceBox": {
+        "x": 133,
+        "y": 79,
+        "width": 396,
+        "height": 513,
+        "area": 153599
+      },
+      "width": 50,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 50,
+        "height": 64
+      },
+      "reviewedAt": "2026-10-19T15:27:58.463Z"
+    },
+    "visor-cap": {
+      "name": "visor-cap",
+      "status": "pending",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/cashmere-mark.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "e21adce69bfadb98"
+        }
+      ],
+      "sourceBox": {
+        "x": 673,
+        "y": 145,
+        "width": 487,
+        "height": 446,
+        "area": 151398
+      },
+      "width": 70,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 70,
+        "height": 64
+      }
+    },
+    "dome": {
+      "name": "dome",
+      "status": "pending",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/cashmere-mark.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "e21adce69bfadb98"
+        }
+      ],
+      "sourceBox": {
+        "x": 119,
+        "y": 709,
+        "width": 444,
+        "height": 455,
+        "area": 148895
+      },
+      "width": 63,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 63,
+        "height": 64
+      }
+    },
+    "antenna-block": {
+      "name": "antenna-block",
+      "status": "pending",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/cashmere-mark.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "e21adce69bfadb98"
+        }
+      ],
+      "sourceBox": {
+        "x": 727,
+        "y": 647,
+        "width": 383,
+        "height": 516,
+        "area": 146007
+      },
+      "width": 48,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 48,
+        "height": 64
+      }
+    }
+  },
+  "prompt": "TASK:\nCreate one production-ready sticker sheet containing exactly 4 game sprites.\n\nPROJECT CONTEXT:\nwynlo-landing: Logo marks for the Wynlo personal studio site.\n\nSTYLE:\nSTYLE LOCK: Match the reference image exactly in drawing style. The reference is the Cashmere mark: a person's head and shoulders in three-quarter view, drawn with one very bold black outline, a white face, a solid black hair shape and two short vertical dash eyes.\n\nPRIMARY GOAL: A friendly robot logo mark for a personal software studio. It must read at favicon size and sit next to a wordmark in a site header.\n\nCORE AESTHETIC: The same character as the reference mark, but a robot. Replace the hair with a solid black robot part (a visor cap, a rounded helmet top, or an antenna block). Keep the bust framing, the chunky rounded head and the calm, slightly turned pose.\n\nLINE: One very bold, even black outline on every shape, the same weight everywhere. Rounded caps and joins. Smooth geometric curves, no wobble.\n\nFILL: White inside every outline. Exactly one solid black accent shape, like the reference's hair. No grey, no tints, no hatching.\n\nCOLOR: Two colours only: black #1A1A1A and white.\n\nFACE: Two short vertical black dash eyes. No mouth, no nose, no other face detail.\n\nDETAIL LEVEL: Very few shapes. At most one small detail (an antenna, an ear bolt, a neck seam). The mark stays clear at 24px.\n\nCOMPOSITION: One mark per cell, centred, wide white margin. No text anywhere.\n\nPALETTE:\nWhite #FFFFFF (background), Ink #1A1A1A (outline), Ink Fill #1A1A1A (fill)\n\nSHAPE LANGUAGE:\nchunky rounded head shapes, soft rounded-rectangle forms, one solid black accent shape, like the Cashmere mark's hair, two short vertical dash eyes, three-quarter head and shoulders bust\n\nRENDERING RULES:\n- match the reference mark's line weight, fill and simplicity exactly\n- very bold even black outline with rounded caps and joins\n- white fills, one solid black accent shape per mark\n- eyes are two short vertical black dashes, nothing else on the face\n- no grey, no shading, no gradients\n- reads as a clear silhouette at 24px\n- absolutely no text, letters or symbols\n- crisp high-resolution raster\n\nCATEGORY:\nRobot logo marks, head and shoulders bust, three-quarter view facing right\n\nEXACT ASSETS:\n1. robot bust with a rounded square head and a solid black helmet top that curls over the forehead like hair, one short antenna\n2. robot bust with a wide rounded head and a solid black visor cap, a round ear bolt on the side\n3. robot bust with a pill-shaped head, a solid black rounded dome on top, and a short neck seam\n4. robot bust with a rounded square head, two solid black antenna blocks on top, and a boxy collar\n\nCANVAS AND LAYOUT:\nOutput size 1024x1024. Solid flat background #FFFFFF with no texture, no vignette, no border. Nothing in the picture may use a colour close to the background colour.\nArrange the assets in a neat grid in reading order (left to right, then top to bottom), one asset per cell.\nKeep every asset isolated.\nDo not let assets touch or overlap.\nUse front-facing views only.\nLeave generous crop-safe spacing around every asset, at least one asset-width apart.\nNo labels, text, numbers, scene, ground line, or decorative filler.\n\nSPRITE RULES:\nUse strong, rounded silhouettes that remain readable at 24x24px.\nUse no more than 2 base colours per asset, plus their shading tones.\nNo shading. White fills inside bold black outlines, with one solid black accent shape.\nAvoid tiny details, intricate textures, and visual clutter.\nUse #1A1A1A outlines, very bold even stroke, about 7% of the mark's width, with rounded caps and joins.\nKeep the palette, outline weight, proportions, and detail level consistent across the whole sheet.\nDraw every asset at a similar visual scale.\n\nNEGATIVE PROMPT:\ntext, letters, numbers, watermark, colour of any kind, grey fills, gradients, drop shadows, glow, 3D render, metallic shine, rivets and bolts clutter, thin hairlines, sketchy lines, mouths, noses, eye whites, glowing eyes, circle badge frames\n\nFINAL CHECK:\nExactly 4 assets.\nEvery requested asset is present once, in the listed order.\nEvery asset is separate, readable, and crop-safe.",
+  "promptVersion": "v1",
+  "references": [
+    {
+      "n": 1,
+      "path": "art/refs/cashmere-mark.png",
+      "role": "style",
+      "source": "explicit",
+      "sha256": "e21adce69bfadb98"
+    }
+  ],
+  "generatedAt": "2026-10-19T15:25:23.719Z",
+  "provider": "codex",
+  "detected": 4,
+  "expected": 4
+}

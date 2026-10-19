@@ -16,7 +16,7 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
 
   return <button
     type="button"
-    className={`theme-toggle grid size-10 cursor-pointer place-items-center border border-rule text-ink transition-[color,background-color,border-color,transform] hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-paper ${className}`}
+    className={`theme-toggle grid size-9 cursor-pointer place-items-center rounded-md text-ink transition-colors hover:bg-surface-strong ${className}`}
     aria-label="Toggle color theme"
     title="Toggle color theme"
     onClick={toggleTheme}

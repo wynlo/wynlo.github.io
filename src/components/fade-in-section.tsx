@@ -23,30 +23,14 @@ export function FadeInSection({ children, className, id }: FadeInSectionProps) {
 }
 
 const textVariants: Variants = {
-  hidden: { opacity: 0, y: 14, filter: 'blur(3px)' },
-  visible: (order: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.65,
-      delay: order * 0.08,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-}
-
-const artworkVariants: Variants = {
   hidden: { opacity: 0 },
   visible: (order: number = 0) => ({
     opacity: 1,
-    transition: {
-      duration: 0.75,
-      delay: order * 0.08,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: { duration: 0.15, delay: order * 0.04, ease: 'easeOut' },
   }),
 }
+
+const artworkVariants = textVariants
 
 type FadeInItemProps = {
   children: React.ReactNode

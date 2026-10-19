@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   description: 'Building technology people understand, trust, and adopt through architecture, engineering, product, and brand thinking.',
   icons: {
     icon: [
-      { url: `${basePath}/robot-icon-light.png`, media: '(prefers-color-scheme: light)', type: 'image/png' },
-      { url: `${basePath}/robot-icon-white-v2.png`, media: '(prefers-color-scheme: dark)', type: 'image/png' },
+      { url: `${basePath}/robot-logo-helmet-light.png`, media: '(prefers-color-scheme: light)', type: 'image/png' },
+      { url: `${basePath}/robot-logo-helmet-dark.png`, media: '(prefers-color-scheme: dark)', type: 'image/png' },
     ],
   },
   openGraph: { type: 'website', title: 'Wayne Loh | Building Technology That Earns Trust', description: 'Building technology people understand, trust, and adopt through architecture, engineering, product, and brand thinking.' },
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f7f7f4' },
-    { media: '(prefers-color-scheme: dark)', color: '#171716' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#191919' },
   ],
 }
 

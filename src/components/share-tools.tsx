@@ -11,8 +11,8 @@ export function ShareTools({ title }: { title: string }) {
     window.open(href, '_blank', 'noopener,noreferrer')
   }
   return <div className="flex gap-2 lg:sticky lg:top-8 lg:flex-col" aria-label="Share article">
-    <button className="grid size-9 place-items-center rounded-full border border-rule text-ink transition-[color,background-color,border-color,transform] hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-paper" aria-label="Copy article link" onClick={async () => { await navigator.clipboard.writeText(window.location.href); setCopied(true); setTimeout(() => setCopied(false), 1500) }}>{copied ? <Check size={14} /> : <Copy size={14} />}</button>
-    <button className="grid size-9 place-items-center rounded-full border border-rule text-ink transition-[color,background-color,border-color,transform] hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-paper" aria-label="Share on LinkedIn" onClick={() => share('linkedin')}><Linkedin size={14} /></button>
-    <button className="grid size-9 place-items-center rounded-full border border-rule text-ink transition-[color,background-color,border-color,transform] hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-paper" aria-label="Share by email" onClick={() => share('email')}><Mail size={14} /></button>
+    <button className="grid size-9 place-items-center rounded-full border border-rule text-ink transition-colors hover:bg-surface-strong" aria-label="Copy article link" onClick={async () => { await navigator.clipboard.writeText(window.location.href); setCopied(true); setTimeout(() => setCopied(false), 1500) }}>{copied ? <Check size={14} /> : <Copy size={14} />}</button>
+    <button className="grid size-9 place-items-center rounded-full border border-rule text-ink transition-colors hover:bg-surface-strong" aria-label="Share on LinkedIn" onClick={() => share('linkedin')}><Linkedin size={14} /></button>
+    <button className="grid size-9 place-items-center rounded-full border border-rule text-ink transition-colors hover:bg-surface-strong" aria-label="Share by email" onClick={() => share('email')}><Mail size={14} /></button>
   </div>
 }

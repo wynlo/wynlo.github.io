@@ -133,7 +133,7 @@ function FrameController({ active, reducedMotion }: { active: boolean; reducedMo
 export default function SectionBackdropCanvas({ variant, active }: { variant: SectionBackdropVariant; active: boolean }) {
   const { resolvedTheme } = useTheme()
   const reducedMotion = useSyncExternalStore(subscribeMotion, () => window.matchMedia(MOTION_QUERY).matches, () => false)
-  const color = resolvedTheme === 'dark' ? '#edede8' : '#181818'
+  const color = resolvedTheme === 'dark' ? '#d4d4d4' : '#37352f'
   const animate = active && !reducedMotion
 
   return <Canvas orthographic camera={{ position: [0, 0, 12], zoom: 76, near: 0.1, far: 50 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }} frameloop="demand">

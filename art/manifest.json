@@ -1,0 +1,18 @@
+[
+  {
+    "target": "robot-logo",
+    "compose": "sheet",
+    "kind": "icon",
+    "game": "brand",
+    "category": "Robot logo marks, head and shoulders bust, three-quarter view facing right",
+    "assets": [
+      "robot bust with a rounded square head and a solid black helmet top that curls over the forehead like hair, one short antenna",
+      "robot bust with a wide rounded head and a solid black visor cap, a round ear bolt on the side",
+      "robot bust with a pill-shaped head, a solid black rounded dome on top, and a short neck seam",
+      "robot bust with a rounded square head, two solid black antenna blocks on top, and a boxy collar"
+    ],
+    "names": ["helmet-curl", "visor-cap", "dome", "antenna-block"],
+    "references": [{ "ref": "art/refs/cashmere-mark.png", "role": "style" }],
+    "referencesMode": "replace"
+  }
+]

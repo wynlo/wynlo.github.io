@@ -1,0 +1,73 @@
+{
+  "project": {
+    "name": "wynlo-landing",
+    "description": "Logo marks for the Wynlo personal studio site."
+  },
+  "style": {
+    "file": "art/style.md",
+    "additionalDetails": ""
+  },
+  "prompts": {
+    "version": "v1"
+  },
+  "manifest": "art/manifest.json",
+  "out": "art/generated",
+  "provider": {
+    "name": "codex",
+    "concurrency": 1,
+    "gapMs": 8000,
+    "model": "gpt-image-2",
+    "effort": "low",
+    "timeoutMs": 420000
+  },
+  "cutout": {
+    "mode": "ink",
+    "chroma": "#00FF00",
+    "threshold": 102,
+    "feather": 1.5,
+    "despill": true,
+    "detectThreshold": 34,
+    "minArea": 400,
+    "mergeGap": 14
+  },
+  "atlas": {
+    "dir": "public/assets/atlas",
+    "groupBy": "game",
+    "scale": 2,
+    "groupScale": {},
+    "unit": 64,
+    "format": "phaser-hash",
+    "padding": 2,
+    "maxSize": 4096,
+    "quantize": false,
+    "pot": false,
+    "quality": 90
+  },
+  "tints": {},
+  "kinds": {
+    "backdrop": {
+      "width": 8,
+      "anchor": "top-left"
+    },
+    "furniture": {
+      "height": 2,
+      "anchor": "bottom-center"
+    },
+    "visitor": {
+      "height": 1.5,
+      "anchor": "bottom-center"
+    },
+    "item": {
+      "height": 0.75,
+      "anchor": "center"
+    },
+    "icon": {
+      "height": 0.5,
+      "anchor": "center"
+    },
+    "fx": {
+      "height": 0.75,
+      "anchor": "center"
+    }
+  }
+}
