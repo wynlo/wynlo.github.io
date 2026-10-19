@@ -1,69 +1,120 @@
 ---
-title: "Why Regression Testing Matters More in AI-Driven Development"
+title: "Why AI-Driven Teams Still Need Manual Testing And A QA"
 slug: "why-regression-testing-matters-more-in-ai-driven-development"
-subtitle: "When the same agent writes the code and the tests, a green build proves consistency, not correctness."
-excerpt: "Why independent regression suites, boundary tests, and author-independent CI matter more once agents generate both implementation and tests."
+subtitle: "When an agent writes the code and the tests from one reading of a ticket, a green build does not prove the business requirement is met."
+excerpt: "A coding agent can write a feature and its tests from the same wrong reading of a ticket, and CI still passes. Why teams still need manual testing, a QA, a written regression catalog, and Playwright tests with screenshots."
 category: "Engineering"
 publishedAt: "2026-07-25T03:30:00.000Z"
-readingTime: 4
+readingTime: 6
 featured: false
 draft: false
 ---
 
-Coding agents now write the implementation, the unit tests, and often the integration test for the same change, then repair the failures until everything is green. This is usually described as a safety improvement. In one specific way, it is the opposite.
+A coding agent writes the implementation and the tests for a change, then fixes failures until CI passes. The code and the tests come from the same reading of the ticket. If that reading is wrong, both are wrong and CI still passes.
 
-When one agent interprets the requirement, writes the code, and writes the tests, a passing suite proves that the code agrees with the agent's interpretation. It does not prove the interpretation was right. If it was wrong, the code and the tests are wrong together, in exactly the same way.
+## How Does A Wrong Change Pass CI?
 
-## Twenty tests, one misunderstanding
+A ticket for a grocery app says customers can cancel an order "before fulfilment". An agent reads this as "before the order ships" and writes tests for pending and shipped orders. Every test passes.
 
-Suppose a requirement says customers can cancel an order "before fulfilment." An agent reads that as "before shipping," implements it, and generates tests for pending and shipped orders. Everything passes. The actual product rule prohibits cancellation once warehouse picking begins.
+The operations team uses "fulfilment" to mean picking. Once a picker starts on an order, it cannot be cancelled. That rule is not in the repository.
 
 ```mermaid
 flowchart TD
-  Requirement[Ambiguous requirement] --> Interpretation[One interpretation]
-  Interpretation --> Code[Implementation]
-  Interpretation --> Tests[Tests]
-  Code --> Green[Green build]
+  Ticket["Ticket: cancel before fulfilment"] --> Reading["Agent reads it as: before shipping"]
+  Reading --> Code[Cancellation endpoint]
+  Reading --> Tests[Unit and integration tests]
+  Code --> Green[CI passes]
   Tests --> Green
-  Green --> Defect[Wrong behaviour ships]
+  Green --> QA[QA tests on staging]
+  QA --> Bug[Order in picking is cancelled and refunded]
 ```
 
-Developers have always written tests that confirm their own assumptions. What changed is scale: an agent can turn one misunderstanding into a large, polished diff with a matching suite before anyone else looks at it. Twenty generated test cases derived from one wrong assumption are still one wrong assumption.
+## What Does A QA Check?
 
-Independent evidence has to come from outside that loop: an acceptance rule someone else wrote down, an API contract, a historical incident, a production example, a reviewer who knows the domain.
+A QA asks the operations lead what "fulfilment" means. Then they place an order on staging, start picking it in the warehouse tool, and press Cancel on a phone. Their test plan has these cases:
 
-## The regression suite is memory the agent doesn't have
+- cancel a pending order
+- cancel an order in picking
+- cancel an order after the delivery slot cutoff
+- cancel one of two orders placed in the same checkout
+- press Cancel twice on a slow mobile connection
 
-A mature regression suite records things nobody put in the prompt: edge cases discovered in production, contracts agreed with other systems, security boundaries, failures the team already paid to understand. An agent arriving at the repository knows none of that history. The suite makes part of it executable.
+Only the first case is in the ticket. The QA knows the others from earlier releases and support tickets. The double press often finds duplicate refunds.
 
-This matters because agents optimise for the requested change. A regression test is the mechanism that says: whatever you did over there, these existing properties still hold.
+An agent does not ask the operations lead what a word means, and it has no record of last year's incidents. A developer who tests their own code has the same problem on a smaller scale.
 
-The practical rule is simple. Every escaped defect becomes an automated check at the layer where it escaped: sometimes a unit test, often a contract test, a migration test, or a deployment check. That is what stops the next agent from rediscovering the same failure.
+## Should Developers Still Test By Hand?
 
-## Generated unit tests hug the implementation
+Yes. Run every agent-written change locally before opening a merge request: the main flow and one or two error cases. This finds broken screens, wrong copy, and errors that the agent hid behind a fallback value. An agent's diff is often large and tidy, and reviewers approve code that reads well. Running the feature shows what the code does.
 
-AI is good at generating unit tests, and the tests it generates tend to follow the shape of the code: mock every collaborator, assert internal calls, copy constants from the implementation. They pass while the system fails at its boundaries. The database mapping drops a field, the JSON property has the wrong name, the emitted event violates its schema, or the deployed route bypasses the permission check through different middleware.
+The developer checks that the change works. The QA checks that it meets the business requirement.
 
-So the tests that matter more in an AI-driven workflow are the ones at real boundaries: schemas, migrations, serialization, authentication wiring, event contracts. Mocking the database driver does not validate a migration. When an agent changes both sides of a boundary in one diff, only a test that neither side controls can catch the shared mistake.
+## Why Write Down The Regression Journeys?
 
-## CI has to be independent of the author
+A regression catalog is a document in the repository. It lists the core user journeys, with one action and one expected result per case:
 
-An agent should run tests while it works, but it should not decide which checks are mandatory. It has incomplete context and an incentive to finish. It will pick the nearest tests, or dismiss a failing suite as unrelated to its change.
+| ID | Action | Expected |
+| --- | --- | --- |
+| ORD-07 | Cancel an order in picking | Cancel button is disabled, with the message "This order is being packed" |
+| ORD-08 | Press Cancel twice on a pending order | One cancellation and one refund |
 
-CI is the enforcement point that doesn't care who the author was: required checks, run from known configuration, against the exact revision. The pipeline also has to protect the tests themselves, with ownership rules on security checks, contract fixtures, and CI configuration, because the cheapest way to make a change green is to weaken the evidence that was supposed to constrain it.
+Keep these rules for the catalog:
 
-## Coverage is not confidence
+- Cover journeys a customer or staff member takes. Leave out visual details.
+- Keep case IDs stable, so tickets, tests and bug reports can refer to them.
+- Update the catalog in the same merge request as any change to user-visible behaviour.
+- Name the test data for each case, such as a seeded account with a full order history.
 
-AI can raise coverage quickly, and coverage measures what ran, not whether any assertion would catch a defect. A test can execute every line while duplicating the implementation's calculation.
+The agent reads the catalog before it starts. The QA walks the same cases on staging. The end-to-end tests use the same IDs. Without the catalog, the agent infers the expected behaviour from the code.
 
-The questions worth asking of a generated test: would it fail if the business rule were reversed? Was the expected value derived from anything other than the code under test? Has anyone ever seen it fail? Mutation testing answers the first question mechanically and is worth pointing at suites an agent produced.
+## How Should Agents Use Playwright And Screenshots?
 
-## Where to start
+An agent can write [Playwright](https://playwright.dev/) tests and run them. Have it write them from the catalog cases. A test written from the new code checks only what the code already does.
 
-- Hold AI-authored changes to the same mandatory pipeline as human ones.
-- Turn escaped defects into regression checks at the layer where they escaped.
-- Put realistic integration or contract coverage on the boundaries that hurt: data, auth, payments, irreversible operations.
-- Give agents acceptance examples and contracts up front, instead of letting them infer the expected behaviour from the code they just wrote.
-- Watch escaped defects and rework, not how fast the build goes green.
+The agent can also walk a journey in a browser and take a screenshot at each step. Use `toHaveScreenshot` to fail a test when a screen differs from the approved baseline.
 
-Producing a plausible change is becoming cheap. Independently proving the change is correct is the part that still separates teams, and it is the job that regression suites, boundary tests, and author-independent CI exist to do.
+A screenshot of a successful cancellation looks correct even when the order was in picking. A person still compares the result with the requirement.
+
+Set limits on these tests:
+
+- An agent can run `--update-snapshots` to make a failing visual test pass. Require human review of baseline changes.
+- Agents fix flaky tests with fixed waits and retries. Require locators by role and label, such as `getByRole('button', { name: 'Cancel order' })`.
+- Take screenshots with seeded data. An empty account hides overflow and pagination bugs.
+
+## What Should A Merge Request Description Show?
+
+A merge request description that only lists the changed files tells the reviewer nothing about behaviour. Have the agent write the description with the before and after state of each affected journey:
+
+| Case | Before | After |
+| --- | --- | --- |
+| ORD-07 Cancel an order in picking | Order is cancelled and refunded (screenshot) | Cancel button is disabled, with the message "This order is being packed" (screenshot) |
+| ORD-08 Press Cancel twice | Two refunds issued | One refund issued |
+| ORD-03 Cancel a pending order | Order is cancelled | No change |
+
+Include these items:
+
+- The catalog case IDs the change affects, and the cases checked for no change.
+- Screenshots from the target branch and from the change, taken with the same seeded data.
+- API request and response samples when the change has no screen, such as a new error code.
+- The steps and test data used, so the QA can repeat them on staging.
+
+The reviewer compares the before and after states with the ticket before reading the diff. A wrong reading of the requirement shows up in the "After" column. The QA starts from the same table. After the merge, the description is a record of what the release changed, and the next agent can read it when it touches the same journey.
+
+## What Do Automated Regression Tests Still Do?
+
+Every bug that reaches staging or production gets an automated test at the layer where it escaped: unit, API contract, database migration or end-to-end. CI then runs it on every change.
+
+Agent-generated unit tests mock every dependency and copy constants from the implementation. They pass while the database mapping drops a field or the API returns the wrong property name. Tests that run real migrations, check the API contract and call deployed routes find these bugs.
+
+## What Should The Release Process Look Like?
+
+1. The product owner writes acceptance examples in the ticket, with real order statuses.
+2. The agent gets the examples, the regression catalog and the API contracts in its prompt.
+3. The agent updates the catalog and the Playwright tests for any changed journey.
+4. The developer tests the change by hand.
+5. The merge request description shows the before and after state of each affected case, with screenshots.
+6. CI runs the required suite.
+7. The QA walks the affected catalog cases on staging.
+8. Every bug found in steps 4 to 7 becomes a catalog case and an automated test.
+
+The QA step adds about half a day to a feature. In the cancellation example, skipping it means refunds on picked orders and stock written off in the warehouse.
