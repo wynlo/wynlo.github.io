@@ -20,8 +20,8 @@ export function Header() {
     return () => window.removeEventListener('scroll', update)
   }, [])
 
-  const email = process.env.NEXT_PUBLIC_EMAIL || ''
-  const linkedinUrl = process.env.NEXT_PUBLIC_LINKEDIN_URL || ''
+  const email = 'wayneloh.qiao.zhang@gmail.com'
+  const linkedinUrl = 'https://www.linkedin.com/in/wayneloh'
   const studioUrl = process.env.NEXT_PUBLIC_STUDIO_URL || ''
   const studioName = process.env.NEXT_PUBLIC_STUDIO_NAME || 'Potatoheads'
   const contactHref = email ? `mailto:${email}` : '/#contact'

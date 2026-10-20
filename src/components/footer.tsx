@@ -4,8 +4,8 @@ import { LinkedInIcon, PotatoheadsIcon } from './brand-icons'
 import { ComingSoonTooltip } from './coming-soon-tooltip'
 
 export function Footer() {
-  const email = process.env.NEXT_PUBLIC_EMAIL || ''
-  const linkedinUrl = process.env.NEXT_PUBLIC_LINKEDIN_URL || ''
+  const email = 'wayneloh.qiao.zhang@gmail.com'
+  const linkedinUrl = 'https://www.linkedin.com/in/wayneloh'
   const studioUrl = process.env.NEXT_PUBLIC_STUDIO_URL || ''
   const studioName = process.env.NEXT_PUBLIC_STUDIO_NAME || 'Potatoheads'
   return <footer className="border-t border-rule bg-paper">

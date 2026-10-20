@@ -34,8 +34,8 @@ const approaches = [
 
 export default function Home() {
   const articles = getArticles()
-  const email = process.env.NEXT_PUBLIC_EMAIL || ''
-  const linkedinUrl = process.env.NEXT_PUBLIC_LINKEDIN_URL || ''
+  const email = 'wayneloh.qiao.zhang@gmail.com'
+  const linkedinUrl = 'https://www.linkedin.com/in/wayneloh'
 
   return <>
     <section className="relative isolate overflow-hidden">
