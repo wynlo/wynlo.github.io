@@ -1,0 +1,62 @@
+{
+  "target": "scene-shape",
+  "compose": "backdrop",
+  "kind": "backdrop",
+  "game": "scenes",
+  "warnings": [],
+  "assets": {
+    "scene-shape": {
+      "name": "scene-shape",
+      "status": "approved",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/robot-helmet-curl.png",
+          "role": "family",
+          "source": "explicit",
+          "sha256": "8631bb0716909f71"
+        },
+        {
+          "n": 2,
+          "path": "art/refs/cashmere-mark.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "e21adce69bfadb98"
+        }
+      ],
+      "width": 1024,
+      "height": 576,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 576
+      },
+      "reviewedAt": "2026-10-20T03:04:32.469Z"
+    }
+  },
+  "prompt": "TASK:\nCreate one game backdrop band: the full robot standing beside a large drawing board on an easel, pointing at a simple sketch on it made of three rounded boxes joined by lines.\n\nPROJECT CONTEXT:\nwynlo-landing: Logo marks for the Wynlo personal studio site.\n\nSTYLE:\nSTYLE LOCK: Match the reference image exactly in drawing style. The reference is the Cashmere mark: a person's head and shoulders in three-quarter view, drawn with one very bold black outline, a white face, a solid black hair shape and two short vertical dash eyes.\n\nPRIMARY GOAL: A friendly robot character for a personal software studio. Logo marks must read at favicon size. Scene illustrations show the same robot doing one simple action on a landing page.\n\nCORE AESTHETIC: The same character as the reference mark, but a robot. Replace the hair with a solid black robot part (a visor cap, a rounded helmet top, or an antenna block). Keep the chunky rounded head and the calm, slightly turned pose. Logo marks use bust framing. Scenes show the full robot: the same head and helmet, a small rounded-rectangle body, short tube arms with round mitten hands, and two short stubby legs.\n\nLINE: One very bold, even black outline on every shape, the same weight everywhere. Rounded caps and joins. Smooth geometric curves, no wobble.\n\nFILL: White inside every outline. Exactly one solid black accent shape, like the reference's hair. No grey, no tints, no hatching.\n\nCOLOR: Two colours only: black #1A1A1A and white.\n\nFACE: Two short vertical black dash eyes. No mouth, no nose, no other face detail.\n\nDETAIL LEVEL: Very few shapes. A logo mark has at most one small detail and stays clear at 24px. A scene has the robot plus two or three simple props, each large.\n\nCOMPOSITION: Logo marks: one mark per cell, centred, wide white margin. Scenes: one robot and its props, centred, wide white margin, no ground texture, no background scenery. No text anywhere.\n\nPALETTE:\nWhite #FFFFFF (background), Ink #1A1A1A (outline), Ink Fill #1A1A1A (fill)\n\nSHAPE LANGUAGE:\nchunky rounded head shapes, soft rounded-rectangle forms, one solid black accent shape, like the Cashmere mark's hair, two short vertical dash eyes, three-quarter head and shoulders bust\n\nRENDERING RULES:\n- match the reference mark's line weight, fill and simplicity exactly\n- very bold even black outline with rounded caps and joins\n- white fills, one solid black accent shape per mark\n- eyes are two short vertical black dashes, nothing else on the face\n- no grey, no shading, no gradients\n- reads as a clear silhouette at 24px\n- absolutely no text, letters or symbols\n- crisp high-resolution raster\n\nCANVAS AND LAYOUT:\nOutput size 1536x864, aspect 16:9.\nThe picture fills the whole canvas edge to edge. No border, no margin, no vignette.\nFlat, front-facing, straight on. No characters, no props that were not asked for, no text.\n\nRENDERING:\nNo shading. White fills inside bold black outlines, with one solid black accent shape.\nSoft outlines only where an object needs one.\nKeep detail low and even so sprites placed over it stay readable.\n\nNEGATIVE PROMPT:\ntext, letters, numbers, watermark, colour of any kind, grey fills, gradients, drop shadows, glow, 3D render, metallic shine, rivets and bolts clutter, thin hairlines, sketchy lines, mouths, noses, eye whites, glowing eyes, circle badge frames\n\nFINAL CHECK:\nWhole canvas filled, straight-on view, no text.\n\nADDITIONAL DETAILS:\nThe robot is the exact character in the robot reference image: same rounded square head, same solid black helmet top curling over the forehead, same single antenna with a ball tip, same round ear disc, same two vertical dash eyes. Line weight for this scene: one bold even black stroke, about 1.2% of the image width. Solid black only on the helmet, plus at most one prop accent.",
+  "promptVersion": "v1",
+  "references": [
+    {
+      "n": 1,
+      "path": "art/refs/robot-helmet-curl.png",
+      "role": "family",
+      "source": "explicit",
+      "sha256": "8631bb0716909f71"
+    },
+    {
+      "n": 2,
+      "path": "art/refs/cashmere-mark.png",
+      "role": "style",
+      "source": "explicit",
+      "sha256": "e21adce69bfadb98"
+    }
+  ],
+  "generatedAt": "2026-10-20T01:37:07.869Z",
+  "provider": "codex"
+}

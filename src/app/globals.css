@@ -260,6 +260,19 @@ h1, h2, h3 {
   transition-delay: 0s;
 }
 
+.mobile-menu-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility 0s .3s;
+}
+.mobile-menu-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
 .theme-toggle-moon { display: none; }
 .dark .theme-toggle-sun { display: none; }
 .dark .theme-toggle-moon { display: block; }
@@ -276,12 +289,6 @@ h1, h2, h3 {
   mask-repeat: no-repeat;
 }
 
-@media (max-width: 767px) and (orientation: portrait) {
-  .mobile-portrait-artwork {
-    margin-top: -6rem;
-    margin-bottom: -4rem;
-  }
-}
 
 @media (max-width: 767px) {
   .section-backdrop { display: none; }
@@ -302,10 +309,71 @@ h1, h2, h3 {
     padding-inline: 3rem;
   }
 }
+.hero-grid {
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* Robot scene loops. Each one uses translate and rotate only, so the rendered size does not change. */
+.robot-float { animation-duration: 4s; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+/* Waving: rock side to side from the feet. */
+.robot-hero, .robot-contact { transform-origin: 50% 95%; animation-name: robot-wave; animation-duration: 2.4s; }
+@keyframes robot-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-6deg); }
+  75% { transform: rotate(6deg); }
+}
+/* Pointing at the board: lean in, hold, lean back. */
+.robot-shape { transform-origin: 30% 95%; animation-name: robot-point; animation-duration: 3.2s; }
+@keyframes robot-point {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  30%, 60% { transform: translateX(6px) rotate(4deg); }
+}
+/* Placing a block: lift, then set it down with a small bump. */
+.robot-build { transform-origin: 50% 100%; animation-name: robot-place; animation-duration: 2.8s; }
+@keyframes robot-place {
+  0%, 100% { transform: translateY(0); }
+  35% { transform: translateY(-12px); }
+  55% { transform: translateY(2px); }
+  65% { transform: translateY(0); }
+}
+/* Joining links: two quick pushes, then a rest. */
+.robot-connect { transform-origin: 50% 100%; animation-name: robot-join; animation-duration: 2.6s; }
+@keyframes robot-join {
+  0%, 40%, 100% { transform: translateX(0) rotate(0deg); }
+  10%, 26% { transform: translateX(6px) rotate(4deg); }
+  18%, 34% { transform: translateX(-2px) rotate(-2deg); }
+}
+/* Idea: hop up with the bulb, hang for a moment, land. */
+.robot-idea { transform-origin: 50% 100%; animation-name: robot-hop; animation-duration: 3s; }
+@keyframes robot-hop {
+  0%, 45%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(.3, 0, .6, 1); }
+  60%, 70% { transform: translateY(-20px); animation-timing-function: cubic-bezier(.4, 0, .7, 1); }
+  80% { transform: translateY(0); }
+  86% { transform: translateY(-4px); }
+}
+
+/* Soft ellipse under each robot. It fades while the robot is in the air. */
+.robot-shadow {
+  position: absolute;
+  bottom: 0;
+  aspect-ratio: 6;
+  translate: 0 100%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--ink) 26%, transparent) 35%, transparent);
+}
+.robot-shadow-idea { animation: robot-shadow-hop 3s infinite; }
+@keyframes robot-shadow-hop {
+  0%, 45%, 80%, 100% { opacity: 1; }
+  60%, 70% { opacity: .4; }
+  86% { opacity: .85; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .01ms; }
+  .robot-float, .robot-shadow { animation: none !important; }
 }
 
 

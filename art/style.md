@@ -59,9 +59,9 @@ detail:
 
 STYLE LOCK: Match the reference image exactly in drawing style. The reference is the Cashmere mark: a person's head and shoulders in three-quarter view, drawn with one very bold black outline, a white face, a solid black hair shape and two short vertical dash eyes.
 
-PRIMARY GOAL: A friendly robot logo mark for a personal software studio. It must read at favicon size and sit next to a wordmark in a site header.
+PRIMARY GOAL: A friendly robot character for a personal software studio. Logo marks must read at favicon size. Scene illustrations show the same robot doing one simple action on a landing page.
 
-CORE AESTHETIC: The same character as the reference mark, but a robot. Replace the hair with a solid black robot part (a visor cap, a rounded helmet top, or an antenna block). Keep the bust framing, the chunky rounded head and the calm, slightly turned pose.
+CORE AESTHETIC: The same character as the reference mark, but a robot. Replace the hair with a solid black robot part (a visor cap, a rounded helmet top, or an antenna block). Keep the chunky rounded head and the calm, slightly turned pose. Logo marks use bust framing. Scenes show the full robot: the same head and helmet, a small rounded-rectangle body, short tube arms with round mitten hands, and two short stubby legs.
 
 LINE: One very bold, even black outline on every shape, the same weight everywhere. Rounded caps and joins. Smooth geometric curves, no wobble.
 
@@ -71,6 +71,6 @@ COLOR: Two colours only: black #1A1A1A and white.
 
 FACE: Two short vertical black dash eyes. No mouth, no nose, no other face detail.
 
-DETAIL LEVEL: Very few shapes. At most one small detail (an antenna, an ear bolt, a neck seam). The mark stays clear at 24px.
+DETAIL LEVEL: Very few shapes. A logo mark has at most one small detail and stays clear at 24px. A scene has the robot plus two or three simple props, each large.
 
-COMPOSITION: One mark per cell, centred, wide white margin. No text anywhere.
+COMPOSITION: Logo marks: one mark per cell, centred, wide white margin. Scenes: one robot and its props, centred, wide white margin, no ground texture, no background scenery. No text anywhere.

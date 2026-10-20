@@ -11,8 +11,257 @@
       "robot bust with a pill-shaped head, a solid black rounded dome on top, and a short neck seam",
       "robot bust with a rounded square head, two solid black antenna blocks on top, and a boxy collar"
     ],
-    "names": ["helmet-curl", "visor-cap", "dome", "antenna-block"],
-    "references": [{ "ref": "art/refs/cashmere-mark.png", "role": "style" }],
+    "names": [
+      "helmet-curl",
+      "visor-cap",
+      "dome",
+      "antenna-block"
+    ],
+    "references": [
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "scene-hero",
+    "compose": "backdrop",
+    "kind": "backdrop",
+    "game": "scenes",
+    "aspect": "16:9",
+    "seamless": false,
+    "subject": "the full robot standing in a friendly three-quarter pose, waving with one raised hand, the other hand holding a small open laptop at its side",
+    "notes": "The robot is the exact character in the robot reference image: same rounded square head, same solid black helmet top curling over the forehead, same single antenna with a ball tip, same round ear disc, same two vertical dash eyes. Line weight for this scene: one bold even black stroke, about 1.2% of the image width. Solid black only on the helmet, plus at most one prop accent.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "scene-shape",
+    "compose": "backdrop",
+    "kind": "backdrop",
+    "game": "scenes",
+    "aspect": "16:9",
+    "seamless": false,
+    "subject": "the full robot standing beside a large drawing board on an easel, pointing at a simple sketch on it made of three rounded boxes joined by lines",
+    "notes": "The robot is the exact character in the robot reference image: same rounded square head, same solid black helmet top curling over the forehead, same single antenna with a ball tip, same round ear disc, same two vertical dash eyes. Line weight for this scene: one bold even black stroke, about 1.2% of the image width. Solid black only on the helmet, plus at most one prop accent.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "scene-build",
+    "compose": "backdrop",
+    "kind": "backdrop",
+    "game": "scenes",
+    "aspect": "16:9",
+    "seamless": false,
+    "subject": "the full robot placing one chunky block on top of a small stack of three rounded building blocks, the top block solid black",
+    "notes": "The robot is the exact character in the robot reference image: same rounded square head, same solid black helmet top curling over the forehead, same single antenna with a ball tip, same round ear disc, same two vertical dash eyes. Line weight for this scene: one bold even black stroke, about 1.2% of the image width. Solid black only on the helmet, plus at most one prop accent.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "scene-connect",
+    "compose": "backdrop",
+    "kind": "backdrop",
+    "game": "scenes",
+    "aspect": "16:9",
+    "seamless": false,
+    "subject": "the full robot in the middle holding two large chain links, one in each hand, and joining them together",
+    "notes": "The robot is the exact character in the robot reference image: same rounded square head, same solid black helmet top curling over the forehead, same single antenna with a ball tip, same round ear disc, same two vertical dash eyes. Line weight for this scene: one bold even black stroke, about 1.2% of the image width. Solid black only on the helmet, plus at most one prop accent.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "scene-idea",
+    "compose": "backdrop",
+    "kind": "backdrop",
+    "game": "scenes",
+    "aspect": "1:1",
+    "seamless": false,
+    "subject": "the full robot holding a large light bulb up above its head with both hands, three short lines radiating from the bulb",
+    "notes": "The robot is the exact character in the robot reference image: same rounded square head, same solid black helmet top curling over the forehead, same single antenna with a ball tip, same round ear disc, same two vertical dash eyes. Line weight for this scene: one bold even black stroke, about 1.2% of the image width. Solid black only on the helmet, plus at most one prop accent.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "scene-contact",
+    "compose": "backdrop",
+    "kind": "backdrop",
+    "game": "scenes",
+    "aspect": "1:1",
+    "seamless": false,
+    "subject": "the full robot standing and waving hello with one raised hand, holding a large envelope in the other hand, a small speech bubble with no text above its raised hand",
+    "notes": "The robot is the exact character in the robot reference image: same rounded square head, same solid black helmet top curling over the forehead, same single antenna with a ball tip, same round ear disc, same two vertical dash eyes. Line weight for this scene: one bold even black stroke, about 1.2% of the image width. Solid black only on the helmet, plus at most one prop accent.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "potato-logo",
+    "compose": "sheet",
+    "kind": "icon",
+    "game": "brand",
+    "category": "Potatoheads studio logo marks: a potato head only, no body, no neck, no arms, front or slightly turned view",
+    "assets": [
+      "an irregular lumpy potato head with a small solid black two-leaf sprout on top",
+      "a rounded bean-shaped potato head tilted slightly, with a solid black sprout curling from the top",
+      "a lumpy potato head with two small eye-bud dimples on the skin and a solid black leaf sprout",
+      "a wide oval potato head with a solid black patch of soil on its top like hair and one tiny sprout"
+    ],
+    "names": [
+      "sprout",
+      "curl",
+      "dimples",
+      "soil-cap"
+    ],
+    "notes": "This is not a robot. Draw a potato character head in the exact line style of the references: one very bold even black outline, white fill, two short vertical dash eyes, no mouth, no nose. The potato outline is lumpy and organic but still smooth and confident. The only solid black shape is the sprout or soil accent. Each mark reads as a clear silhouette at 17px.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "favicon-robot",
+    "compose": "single",
+    "kind": "icon",
+    "game": "brand",
+    "subject": "an ultra simple favicon of the robot head only, front view: one solid black rounded square head shape with the helmet top and a single short antenna with a ball tip merged into the same solid black silhouette, two short vertical white dash eyes knocked out of the black, no ear disc, no outline details, no body",
+    "notes": "This must read at 16px in a browser tab. Use one solid black silhouette with only the two white dash eyes inside it. No thin lines anywhere. Every gap and white shape is at least 8% of the head width.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "potato-mark",
+    "compose": "single",
+    "kind": "icon",
+    "game": "brand",
+    "subject": "a potato head logo mark, head only, no body: a wide lumpy potato shape that is clearly wider than it is tall, with an irregular outline made of three or four soft bumps like a real potato, two short vertical dash eyes in the middle, and a short solid black two-leaf sprout growing from the top. It must not look like a bean, a pear or a blob.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace",
+    "notes": "One very bold even black outline, about 8% of the mark's width, the same weight as the robot reference. White fill. No skin spots, no dots, no small marks. The sprout is the only solid black shape. Leave a wide white margin on every side so nothing touches the edge. Must read at 20px."
+  },
+  {
+    "target": "potato-options",
+    "compose": "sheet",
+    "kind": "icon",
+    "game": "brand",
+    "category": "Potatoheads logo marks: bold potato character heads, head only",
+    "assets": [
+      "a potato character head, no body: a smooth oblong potato shape like a real russet potato, an egg or kidney outline that is clearly wider than tall with one shallow dent on one side, never bumpy or cloud-like, tilted about 15 degrees, two short vertical dash eyes, and two bold short curved eye-bud marks on the skin",
+      "a potato character head, no body: a smooth oblong potato shape like a real russet potato, an egg or kidney outline that is clearly wider than tall with one shallow dent on one side, never bumpy or cloud-like, lying flat, two short vertical dash eyes, one bold eye-bud mark near the end, and a small solid black sprout from one end",
+      "a potato character head, no body: a smooth oblong potato shape like a real russet potato, an egg or kidney outline that is clearly wider than tall with one shallow dent on one side, never bumpy or cloud-like, kidney-shaped with the dent on top, two short vertical dash eyes, and three bold short eye-bud marks around the face",
+      "a potato character head, no body: a smooth oblong potato shape like a real russet potato, an egg or kidney outline that is clearly wider than tall with one shallow dent on one side, never bumpy or cloud-like, standing slightly upright like an egg, two short vertical dash eyes, and a solid black patch of soil on the lower end"
+    ],
+    "names": [
+      "tilted",
+      "sprout-end",
+      "kidney",
+      "soil"
+    ],
+    "notes": "Draw in the same line style as the robot reference: one very bold even black outline, about 8% of the mark's width, white fill. Eye-bud marks are short thick curved strokes of the same line weight, never thin dots. No mouth. Wide white margin around each mark. Each mark must read as a potato at 20px.",
+    "references": [
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
+  },
+  {
+    "target": "linkedin-banner",
+    "compose": "backdrop",
+    "kind": "backdrop",
+    "game": "social",
+    "aspect": "3:1",
+    "seamless": false,
+    "subject": "a clean isometric cutaway of a small software studio room on a floating floor slab, placed slightly right of centre: a desk with a monitor and a laptop, an office chair where the robot sits waving with one raised hand, a whiteboard with a flow diagram of three joined boxes, a low shelf with three boxes, a pendant lamp. To the left of the room, four small floating isometric objects at different heights in the upper half of the image: a floating app window with a few interface blocks, a stack of three cubes, a small potted plant, and a coffee mug. One thin dotted path curves from the leftmost object through the others and into the room",
+    "notes": "Precise, professional isometric line art, like an editorial tech illustration for a design studio. Strict isometric projection with parallel lines, no perspective. Clean, even, medium-weight black lines, about 0.3% of the image width, crisp straight edges, small rounded corners. Layout: the room covers from about 42% to 92% of the image width. The floating objects sit between 10% and 38% of the width, all in the upper 60% of the image height. The floating objects are small, each about one fifth of the room height, with a lot of white space between them. Keep the bottom-left area (left 38% of width, bottom 40% of height) empty white. Keep the top 13% and bottom 13% of the image plain white, because the image will be cropped to 4:1. Solid black fills only on the robot helmet, the monitor frame, the chair seat and one of the cubes. Everything else white. Black and white only. The robot is the exact character in the robot reference image, drawn at the same isometric angle: rounded square head, solid black helmet top curling over the forehead, single antenna with a ball tip, round ear disc, two vertical dash eyes. The robot is about one third of the room height. No text anywhere. Draw it as a clean, hand-finished vector illustration, like work by a professional illustrator, not a generated image. Rules: one consistent line weight on every line, with rounded caps and joins. The dotted path stops at the room's open front edge, and does not pass through the wall or the monitor. The pendant lamp hangs on one solid cord, no dashed lines anywhere except the path. The monitor faces the robot at the correct isometric angle, black frame, white screen. Every box, cube, desk and shelf follows one isometric grid with exactly parallel edges. Only one plant in the scene, the floating one. The whiteboard shows three boxes joined by plain lines, no arrows. No smudges, no grey, no soft edges.",
+    "references": [
+      {
+        "ref": "art/generated/scene-hero/final/scene-hero.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/robot-helmet-curl.png",
+        "role": "family"
+      },
+      {
+        "ref": "art/refs/cashmere-mark.png",
+        "role": "style"
+      }
+    ],
     "referencesMode": "replace"
   }
 ]

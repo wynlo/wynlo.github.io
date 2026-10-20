@@ -1,0 +1,47 @@
+{
+  "target": "potato-mark",
+  "compose": "single",
+  "kind": "icon",
+  "game": "brand",
+  "warnings": [],
+  "assets": {
+    "potato-mark": {
+      "name": "potato-mark",
+      "status": "pending",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/robot-helmet-curl.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "8631bb0716909f71"
+        }
+      ],
+      "width": 73,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 73,
+        "height": 64
+      }
+    }
+  },
+  "prompt": "TASK:\nCreate one production-ready game sprite: a potato head logo mark, head only, no body: a wide lumpy potato shape that is clearly wider than it is tall, with an irregular outline made of three or four soft bumps like a real potato, two short vertical dash eyes in the middle, and a short solid black two-leaf sprout growing from the top. It must not look like a bean, a pear or a blob..\n\nPROJECT CONTEXT:\nwynlo-landing: Logo marks for the Wynlo personal studio site.\n\nSTYLE:\nSTYLE LOCK: Match the reference image exactly in drawing style. The reference is the Cashmere mark: a person's head and shoulders in three-quarter view, drawn with one very bold black outline, a white face, a solid black hair shape and two short vertical dash eyes.\n\nPRIMARY GOAL: A friendly robot character for a personal software studio. Logo marks must read at favicon size. Scene illustrations show the same robot doing one simple action on a landing page.\n\nCORE AESTHETIC: The same character as the reference mark, but a robot. Replace the hair with a solid black robot part (a visor cap, a rounded helmet top, or an antenna block). Keep the chunky rounded head and the calm, slightly turned pose. Logo marks use bust framing. Scenes show the full robot: the same head and helmet, a small rounded-rectangle body, short tube arms with round mitten hands, and two short stubby legs.\n\nLINE: One very bold, even black outline on every shape, the same weight everywhere. Rounded caps and joins. Smooth geometric curves, no wobble.\n\nFILL: White inside every outline. Exactly one solid black accent shape, like the reference's hair. No grey, no tints, no hatching.\n\nCOLOR: Two colours only: black #1A1A1A and white.\n\nFACE: Two short vertical black dash eyes. No mouth, no nose, no other face detail.\n\nDETAIL LEVEL: Very few shapes. A logo mark has at most one small detail and stays clear at 24px. A scene has the robot plus two or three simple props, each large.\n\nCOMPOSITION: Logo marks: one mark per cell, centred, wide white margin. Scenes: one robot and its props, centred, wide white margin, no ground texture, no background scenery. No text anywhere.\n\nPALETTE:\nWhite #FFFFFF (background), Ink #1A1A1A (outline), Ink Fill #1A1A1A (fill)\n\nSHAPE LANGUAGE:\nchunky rounded head shapes, soft rounded-rectangle forms, one solid black accent shape, like the Cashmere mark's hair, two short vertical dash eyes, three-quarter head and shoulders bust\n\nRENDERING RULES:\n- match the reference mark's line weight, fill and simplicity exactly\n- very bold even black outline with rounded caps and joins\n- white fills, one solid black accent shape per mark\n- eyes are two short vertical black dashes, nothing else on the face\n- no grey, no shading, no gradients\n- reads as a clear silhouette at 24px\n- absolutely no text, letters or symbols\n- crisp high-resolution raster\n\nCANVAS AND LAYOUT:\nOutput size 1024x1024. Solid flat background #FFFFFF with no texture, no vignette, no border. Nothing in the picture may use a colour close to the background colour.\nOne asset only, centred, filling about 80% of the canvas, fully inside the frame.\nFront-facing view. No ground line, no scene, no labels, no text.\n\nSPRITE RULES:\nStrong rounded silhouette, readable when shrunk.\nUse #1A1A1A outlines, very bold even stroke, about 7% of the mark's width, with rounded caps and joins.\nNo shading. White fills inside bold black outlines, with one solid black accent shape.\n\nNEGATIVE PROMPT:\ntext, letters, numbers, watermark, colour of any kind, grey fills, gradients, drop shadows, glow, 3D render, metallic shine, rivets and bolts clutter, thin hairlines, sketchy lines, mouths, noses, eye whites, glowing eyes, circle badge frames\n\nFINAL CHECK:\nExactly one asset, complete, isolated, and crop-safe.\n\nADDITIONAL DETAILS:\nOne very bold even black outline, about 8% of the mark's width, the same weight as the robot reference. White fill. No skin spots, no dots, no small marks. The sprout is the only solid black shape. Leave a wide white margin on every side so nothing touches the edge. Must read at 20px.",
+  "generatedAt": "2026-10-20T13:52:19.487Z",
+  "provider": "codex",
+  "promptVersion": "v1",
+  "references": [
+    {
+      "n": 1,
+      "path": "art/refs/robot-helmet-curl.png",
+      "role": "style",
+      "source": "explicit",
+      "sha256": "8631bb0716909f71"
+    }
+  ]
+}

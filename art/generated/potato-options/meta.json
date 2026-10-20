@@ -1,0 +1,153 @@
+{
+  "target": "potato-options",
+  "compose": "sheet",
+  "kind": "icon",
+  "game": "brand",
+  "warnings": [],
+  "assets": {
+    "tilted": {
+      "name": "tilted",
+      "status": "approved",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/robot-helmet-curl.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "8631bb0716909f71"
+        }
+      ],
+      "sourceBox": {
+        "x": 99,
+        "y": 168,
+        "width": 472,
+        "height": 382,
+        "area": 47302
+      },
+      "width": 79,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 79,
+        "height": 64
+      },
+      "reviewedAt": "2026-10-20T13:57:18.299Z"
+    },
+    "sprout-end": {
+      "name": "sprout-end",
+      "status": "pending",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/robot-helmet-curl.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "8631bb0716909f71"
+        }
+      ],
+      "sourceBox": {
+        "x": 663,
+        "y": 175,
+        "width": 507,
+        "height": 380,
+        "area": 54933
+      },
+      "width": 85,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 85,
+        "height": 64
+      }
+    },
+    "kidney": {
+      "name": "kidney",
+      "status": "pending",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/robot-helmet-curl.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "8631bb0716909f71"
+        }
+      ],
+      "sourceBox": {
+        "x": 88,
+        "y": 766,
+        "width": 496,
+        "height": 324,
+        "area": 47176
+      },
+      "width": 97,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 97,
+        "height": 64
+      }
+    },
+    "soil": {
+      "name": "soil",
+      "status": "pending",
+      "references": [
+        {
+          "n": 1,
+          "path": "art/refs/robot-helmet-curl.png",
+          "role": "style",
+          "source": "explicit",
+          "sha256": "8631bb0716909f71"
+        }
+      ],
+      "sourceBox": {
+        "x": 749,
+        "y": 692,
+        "width": 348,
+        "height": 412,
+        "area": 51604
+      },
+      "width": 54,
+      "height": 64,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "content": {
+        "x": 0,
+        "y": 0,
+        "width": 54,
+        "height": 64
+      }
+    }
+  },
+  "prompt": "TASK:\nCreate one production-ready sticker sheet containing exactly 4 game sprites.\n\nPROJECT CONTEXT:\nwynlo-landing: Logo marks for the Wynlo personal studio site.\n\nSTYLE:\nSTYLE LOCK: Match the reference image exactly in drawing style. The reference is the Cashmere mark: a person's head and shoulders in three-quarter view, drawn with one very bold black outline, a white face, a solid black hair shape and two short vertical dash eyes.\n\nPRIMARY GOAL: A friendly robot character for a personal software studio. Logo marks must read at favicon size. Scene illustrations show the same robot doing one simple action on a landing page.\n\nCORE AESTHETIC: The same character as the reference mark, but a robot. Replace the hair with a solid black robot part (a visor cap, a rounded helmet top, or an antenna block). Keep the chunky rounded head and the calm, slightly turned pose. Logo marks use bust framing. Scenes show the full robot: the same head and helmet, a small rounded-rectangle body, short tube arms with round mitten hands, and two short stubby legs.\n\nLINE: One very bold, even black outline on every shape, the same weight everywhere. Rounded caps and joins. Smooth geometric curves, no wobble.\n\nFILL: White inside every outline. Exactly one solid black accent shape, like the reference's hair. No grey, no tints, no hatching.\n\nCOLOR: Two colours only: black #1A1A1A and white.\n\nFACE: Two short vertical black dash eyes. No mouth, no nose, no other face detail.\n\nDETAIL LEVEL: Very few shapes. A logo mark has at most one small detail and stays clear at 24px. A scene has the robot plus two or three simple props, each large.\n\nCOMPOSITION: Logo marks: one mark per cell, centred, wide white margin. Scenes: one robot and its props, centred, wide white margin, no ground texture, no background scenery. No text anywhere.\n\nPALETTE:\nWhite #FFFFFF (background), Ink #1A1A1A (outline), Ink Fill #1A1A1A (fill)\n\nSHAPE LANGUAGE:\nchunky rounded head shapes, soft rounded-rectangle forms, one solid black accent shape, like the Cashmere mark's hair, two short vertical dash eyes, three-quarter head and shoulders bust\n\nRENDERING RULES:\n- match the reference mark's line weight, fill and simplicity exactly\n- very bold even black outline with rounded caps and joins\n- white fills, one solid black accent shape per mark\n- eyes are two short vertical black dashes, nothing else on the face\n- no grey, no shading, no gradients\n- reads as a clear silhouette at 24px\n- absolutely no text, letters or symbols\n- crisp high-resolution raster\n\nCATEGORY:\nPotatoheads logo marks: bold potato character heads, head only\n\nEXACT ASSETS:\n1. a potato character head, no body: a smooth oblong potato shape like a real russet potato, an egg or kidney outline that is clearly wider than tall with one shallow dent on one side, never bumpy or cloud-like, tilted about 15 degrees, two short vertical dash eyes, and two bold short curved eye-bud marks on the skin\n2. a potato character head, no body: a smooth oblong potato shape like a real russet potato, an egg or kidney outline that is clearly wider than tall with one shallow dent on one side, never bumpy or cloud-like, lying flat, two short vertical dash eyes, one bold eye-bud mark near the end, and a small solid black sprout from one end\n3. a potato character head, no body: a smooth oblong potato shape like a real russet potato, an egg or kidney outline that is clearly wider than tall with one shallow dent on one side, never bumpy or cloud-like, kidney-shaped with the dent on top, two short vertical dash eyes, and three bold short eye-bud marks around the face\n4. a potato character head, no body: a smooth oblong potato shape like a real russet potato, an egg or kidney outline that is clearly wider than tall with one shallow dent on one side, never bumpy or cloud-like, standing slightly upright like an egg, two short vertical dash eyes, and a solid black patch of soil on the lower end\n\nCANVAS AND LAYOUT:\nOutput size 1024x1024. Solid flat background #FFFFFF with no texture, no vignette, no border. Nothing in the picture may use a colour close to the background colour.\nArrange the assets in a neat grid in reading order (left to right, then top to bottom), one asset per cell.\nKeep every asset isolated.\nDo not let assets touch or overlap.\nUse front-facing views only.\nLeave generous crop-safe spacing around every asset, at least one asset-width apart.\nNo labels, text, numbers, scene, ground line, or decorative filler.\n\nSPRITE RULES:\nUse strong, rounded silhouettes that remain readable at 24x24px.\nUse no more than 2 base colours per asset, plus their shading tones.\nNo shading. White fills inside bold black outlines, with one solid black accent shape.\nAvoid tiny details, intricate textures, and visual clutter.\nUse #1A1A1A outlines, very bold even stroke, about 7% of the mark's width, with rounded caps and joins.\nKeep the palette, outline weight, proportions, and detail level consistent across the whole sheet.\nDraw every asset at a similar visual scale.\n\nNEGATIVE PROMPT:\ntext, letters, numbers, watermark, colour of any kind, grey fills, gradients, drop shadows, glow, 3D render, metallic shine, rivets and bolts clutter, thin hairlines, sketchy lines, mouths, noses, eye whites, glowing eyes, circle badge frames\n\nFINAL CHECK:\nExactly 4 assets.\nEvery requested asset is present once, in the listed order.\nEvery asset is separate, readable, and crop-safe.\n\nADDITIONAL DETAILS:\nDraw in the same line style as the robot reference: one very bold even black outline, about 8% of the mark's width, white fill. Eye-bud marks are short thick curved strokes of the same line weight, never thin dots. No mouth. Wide white margin around each mark. Each mark must read as a potato at 20px.",
+  "promptVersion": "v1",
+  "references": [
+    {
+      "n": 1,
+      "path": "art/refs/robot-helmet-curl.png",
+      "role": "style",
+      "source": "explicit",
+      "sha256": "8631bb0716909f71"
+    }
+  ],
+  "generatedAt": "2026-10-20T13:55:23.187Z",
+  "provider": "codex",
+  "detected": 4,
+  "expected": 4
+}

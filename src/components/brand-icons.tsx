@@ -1,14 +1,14 @@
 export function PotatoheadsIcon({ size = 18, className = '' }: { size?: number; className?: string }) {
-  return <svg
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    className={`shrink-0 fill-none stroke-current ${className}`}
+  const image = `url(${process.env.NEXT_PUBLIC_BASE_PATH || ''}/brand/potatoheads-mark.png)`
+  return <span
+    className={`inline-block shrink-0 bg-current ${className}`}
+    style={{
+      width: size, height: size,
+      WebkitMaskImage: image, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center',
+      maskImage: image, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center',
+    }}
     aria-hidden="true"
-  >
-    <path d="M15.8 3.1c2.8.9 4.7 3.4 4.7 6.4 0 1.4-.4 2.6-1.1 3.7.1.5.1 1 .1 1.5 0 3.7-3.2 6.3-7.6 6.3-4.7 0-8.4-2.8-8.4-7 0-2.1.9-3.8 2.4-5C6.2 5.5 8.7 3 12 3c1 0 1.9 0 2.7.1.4-.1.7-.1 1.1 0Z" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M9 10.5v.1M15 10.5v.1M9.2 15.2c1.7 1.3 3.9 1.3 5.6 0" strokeWidth="1.7" strokeLinecap="round" />
-  </svg>
+  />
 }
 
 export function LinkedInIcon({ size = 18, className = '' }: { size?: number; className?: string }) {

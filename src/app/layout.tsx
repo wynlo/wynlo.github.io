@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   description: 'Building technology people understand, trust, and adopt through architecture, engineering, product, and brand thinking.',
   icons: {
     icon: [
-      { url: `${basePath}/robot-logo-helmet-light.png`, media: '(prefers-color-scheme: light)', type: 'image/png' },
-      { url: `${basePath}/robot-logo-helmet-dark.png`, media: '(prefers-color-scheme: dark)', type: 'image/png' },
+      { url: `${basePath}/favicon-light.png`, media: '(prefers-color-scheme: light)', type: 'image/png' },
+      { url: `${basePath}/favicon-dark.png`, media: '(prefers-color-scheme: dark)', type: 'image/png' },
     ],
   },
   openGraph: { type: 'website', title: 'Wayne Loh | Building Technology That Earns Trust', description: 'Building technology people understand, trust, and adopt through architecture, engineering, product, and brand thinking.' },
