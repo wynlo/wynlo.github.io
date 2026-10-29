@@ -9,7 +9,6 @@ const generated = 'art/generated'
 // thicken: extra stroke on each side, as a fraction of the longest side.
 const masks = [
   { src: 'robot-logo/cut/helmet-curl.png', out: 'public/robot-logo-helmet.png', square: 512, thicken: 0.012 },
-  { src: 'potato-options/cut/tilted.png', out: 'public/brand/potatoheads-mark.png', square: 512, thicken: 0.01 },
   ...['hero', 'shape', 'build', 'connect', 'idea', 'contact'].map((name) => ({
     src: `scene-${name}/final/scene-${name}.png`, out: `public/illustrations/robot-${name}.png`, thicken: 0.006,
   })),

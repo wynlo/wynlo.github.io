@@ -3,8 +3,7 @@
 import { Mail, Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { LinkedInIcon, PotatoheadsIcon } from './brand-icons'
-import { ComingSoonTooltip } from './coming-soon-tooltip'
+import { LinkedInIcon } from './brand-icons'
 import { SectionLink } from './section-link'
 import { ThemeLogoIcon } from './theme-logo-icon'
 import { ThemeToggle } from './theme-toggle'
@@ -22,8 +21,6 @@ export function Header() {
 
   const email = 'wayneloh.qiao.zhang@gmail.com'
   const linkedinUrl = 'https://www.linkedin.com/in/wayneloh'
-  const studioUrl = process.env.NEXT_PUBLIC_STUDIO_URL || ''
-  const studioName = process.env.NEXT_PUBLIC_STUDIO_NAME || 'Potatoheads'
   const contactHref = email ? `mailto:${email}` : '/#contact'
   return <header className={`sticky top-0 z-40 border-b backdrop-blur-md transition-colors ${mobileMenuOpen ? 'bg-paper' : 'bg-paper/95'} ${scrolled || mobileMenuOpen ? 'border-rule' : 'border-transparent'}`}>
     <div className="container-page flex h-16 items-center justify-between gap-6">
@@ -35,9 +32,6 @@ export function Header() {
         <SectionLink className="transition-opacity hover:opacity-50" id="approach">How I work</SectionLink>
         <SectionLink className="transition-opacity hover:opacity-50" id="about">About</SectionLink>
         <Link className="transition-opacity hover:opacity-50" href="/writing">Writing</Link>
-        {studioUrl
-          ? <a className="inline-flex items-center gap-2 text-muted transition-colors hover:text-ink" href={studioUrl} target="_blank" rel="noreferrer"><PotatoheadsIcon size={24} />{studioName}</a>
-          : <ComingSoonTooltip><span className="inline-flex cursor-default items-center gap-2 text-muted" tabIndex={0}><PotatoheadsIcon size={24} />{studioName}</span></ComingSoonTooltip>}
         {linkedinUrl && <a className="grid size-9 place-items-center transition-opacity hover:opacity-50" href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="LinkedIn profile"><LinkedInIcon size={18} /></a>}
         <a className="inline-flex h-9 items-center gap-2 rounded-md bg-ink px-4 text-sm font-medium text-paper transition-colors hover:bg-action-hover" href={contactHref}><Mail className="-translate-y-px" aria-hidden="true" size={15} />Get in touch</a>
         <ThemeToggle />
@@ -52,9 +46,6 @@ export function Header() {
             <SectionLink className="border-b border-rule py-3.5 transition-opacity hover:opacity-50" id="approach" onClick={() => setMobileMenuOpen(false)}>How I work</SectionLink>
             <SectionLink className="border-b border-rule py-3.5 transition-opacity hover:opacity-50" id="about" onClick={() => setMobileMenuOpen(false)}>About</SectionLink>
             <Link className="border-b border-rule py-3.5 transition-opacity hover:opacity-50" href="/writing" onClick={() => setMobileMenuOpen(false)}>Writing</Link>
-            {studioUrl
-              ? <a className="flex items-center gap-2.5 border-b border-rule py-3.5 text-muted transition-colors hover:text-ink" href={studioUrl} target="_blank" rel="noreferrer" onClick={() => setMobileMenuOpen(false)}><PotatoheadsIcon size={24} />{studioName}</a>
-              : <span className="flex items-center gap-2.5 border-b border-rule py-3.5 text-muted"><PotatoheadsIcon size={24} />{studioName}<span className="ml-auto text-xs tracking-normal">Coming soon</span></span>}
             {linkedinUrl && <a className="flex items-center gap-2.5 border-b border-rule py-3.5 transition-opacity hover:opacity-50" href={linkedinUrl} target="_blank" rel="noreferrer" onClick={() => setMobileMenuOpen(false)}><LinkedInIcon size={19} />LinkedIn</a>}
             <div className="mt-5 flex gap-3"><a className="flex flex-1 items-center justify-center gap-2 rounded-md bg-ink px-4 py-3 text-[15px] font-medium text-paper transition-colors hover:bg-action-hover hover:text-paper" href={contactHref} onClick={() => setMobileMenuOpen(false)}><Mail className="-translate-y-px" aria-hidden="true" size={16} />Get in touch</a><ThemeToggle className="size-auto w-14 shrink-0" /></div>
           </nav>

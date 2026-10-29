@@ -48,8 +48,6 @@ In the GitHub repository:
 | --- | --- |
 | `NEXT_PUBLIC_EMAIL` | Contact email and email links |
 | `NEXT_PUBLIC_LINKEDIN_URL` | LinkedIn profile URL |
-| `NEXT_PUBLIC_STUDIO_URL` | Reserved external studio URL |
-| `NEXT_PUBLIC_STUDIO_NAME` | Studio name; defaults to Potatoheads |
 
 `NEXT_PUBLIC_SERVER_URL` and the project base path are derived automatically from the repository by the workflow.
 

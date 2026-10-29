@@ -1,16 +1,3 @@
-export function PotatoheadsIcon({ size = 18, className = '' }: { size?: number; className?: string }) {
-  const image = `url(${process.env.NEXT_PUBLIC_BASE_PATH || ''}/brand/potatoheads-mark.png)`
-  return <span
-    className={`inline-block shrink-0 bg-current ${className}`}
-    style={{
-      width: size, height: size,
-      WebkitMaskImage: image, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center',
-      maskImage: image, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center',
-    }}
-    aria-hidden="true"
-  />
-}
-
 export function LinkedInIcon({ size = 18, className = '' }: { size?: number; className?: string }) {
   return <svg
     viewBox="0 0 24 24"

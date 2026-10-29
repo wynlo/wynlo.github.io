@@ -40,7 +40,7 @@ Open the repository's **Actions** tab to monitor the first deployment. Once it s
 
 The deployment automatically sets `NEXT_PUBLIC_SERVER_URL` and `NEXT_PUBLIC_BASE_PATH` from the repository owner and name.
 
-To configure the optional contact and studio values:
+To configure the optional contact values:
 
 1. Open **Settings** in the GitHub repository.
 2. Select **Secrets and variables → Actions**.
@@ -51,8 +51,6 @@ To configure the optional contact and studio values:
 | --- | --- |
 | `NEXT_PUBLIC_EMAIL` | Contact email and email links |
 | `NEXT_PUBLIC_LINKEDIN_URL` | LinkedIn profile URL |
-| `NEXT_PUBLIC_STUDIO_URL` | Reserved external studio URL |
-| `NEXT_PUBLIC_STUDIO_NAME` | Studio name; defaults to Potatoheads |
 | `NEXT_PUBLIC_GOATCOUNTER_CODE` | GoatCounter site code for analytics; defaults to `wynlo` when unset |
 
 These values are public and embedded in the generated site. Use repository variables, not secrets.

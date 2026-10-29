@@ -5,9 +5,9 @@ import { useTheme } from 'next-themes'
 import { useEffect, useLayoutEffect, useMemo, useRef, useSyncExternalStore } from 'react'
 import * as THREE from 'three'
 
-export type VoxelVariant = 'pixel-robot' | 'pixel-cat' | 'light-bulb' | 'potato' | 'shape' | 'build' | 'connect' | 'portal' | 'endless-stair' | 'cantilever'
+export type VoxelVariant = 'pixel-robot' | 'pixel-cat' | 'light-bulb' | 'shape' | 'build' | 'connect' | 'portal' | 'endless-stair' | 'cantilever'
 
-type VoxelPart = 'body' | 'secondary' | 'detail' | 'feet' | 'face' | 'mouth' | 'ray' | 'sprout' | 'accent' | 'brick-red' | 'brick-blue' | 'brick-yellow'
+type VoxelPart = 'body' | 'secondary' | 'detail' | 'feet' | 'face' | 'mouth' | 'ray' | 'accent' | 'brick-red' | 'brick-blue' | 'brick-yellow'
 type Voxel = { x: number; y: number; z: number; t: number; tone?: number; part?: VoxelPart; suspended?: boolean; group?: number }
 
 const RBY = {
@@ -128,39 +128,6 @@ function generate(variant: VoxelVariant): Voxel[] {
       [-7, 20, 0], [-6, 19, 0], [6, 19, 0], [7, 20, 0],
       [0, 22, 0], [0, 23, 0],
     ] as const) voxels.push({ x, y, z, t: 0, part: 'ray', suspended: true })
-  } else if (variant === 'potato') {
-    // A squat, asymmetric tuber with an uneven outline rather than an egg shape.
-    for (let y = 1; y <= 10; y++) {
-      const centerX = 6.2 + Math.sin(y * 0.83) * 0.55
-      const centerZ = 3.1 + Math.cos(y * 0.67) * 0.25
-      const vertical = (y - 5.5) / 5.2
-      const width = 6.7 * Math.sqrt(Math.max(0, 1 - vertical ** 2)) + 0.8
-      const depthRadius = 3.5 * Math.sqrt(Math.max(0, 1 - vertical ** 2)) + 0.55
-      for (let x = 0; x <= 13; x++) for (let z = 0; z <= 7; z++) {
-        const lump = Math.sin(x * 1.35 + y * 0.7) * 0.07
-        const horizontal = (x - centerX) / width
-        const depth = (z - centerZ) / depthRadius
-        if (horizontal ** 2 + depth ** 2 <= 1 + lump) {
-          voxels.push({ x, y, z, t: 0, part: 'body' })
-        }
-      }
-    }
-    // Place the face one voxel in front of the potato's outer surface.
-    for (const [x, y, part] of [
-      [4, 7, 'face'], [8, 7, 'face'],
-      [5, 4, 'mouth'], [6, 4, 'mouth'], [7, 4, 'mouth'],
-    ] as const) {
-      const surface = voxels.filter((voxel) => voxel.x === x && voxel.y === y).sort((a, b) => b.z - a.z)[0]
-      if (surface) voxels.push({ x, y, z: surface.z + 1, t: 0, tone: 0, part })
-    }
-    for (const [x, y, z] of [
-      [7, 10, 3], [7, 11, 3], [7, 12, 3],
-      [6, 12, 3], [5, 13, 3],
-      [8, 12, 3], [9, 13, 3],
-    ] as const) voxels.push({ x, y, z, t: 0, part: 'sprout' })
-    for (const x of [4, 5, 8, 9]) for (let z = 2; z <= 4; z++) {
-      voxels.push({ x, y: 0, z, t: 0, part: 'feet' })
-    }
   } else if (variant === 'shape') {
     // Three fundamental forms overlap in depth as a compact geometric still life.
     for (let y = 1; y <= 8; y++) for (let x = -6; x <= -2; x++) for (let z = -4; z <= 0; z++) {
@@ -270,16 +237,12 @@ function generate(variant: VoxelVariant): Voxel[] {
   return voxels
 }
 
-function measure(voxels: Voxel[], centerVisualMass = false) {
+function measure(voxels: Voxel[]) {
   const box = new THREE.Box3()
   for (const voxel of voxels) box.expandByPoint(new THREE.Vector3(voxel.x, voxel.y, voxel.z))
   const size = box.getSize(new THREE.Vector3()).addScalar(0.9)
   const scale = 10.5 / Math.max(size.x, size.y, size.z, 1)
   const center = box.getCenter(new THREE.Vector3())
-  if (centerVisualMass) {
-    center.x = voxels.reduce((sum, voxel) => sum + voxel.x, 0) / voxels.length
-    center.z = voxels.reduce((sum, voxel) => sum + voxel.z, 0) / voxels.length
-  }
   return {
     center,
     scale,
@@ -296,7 +259,7 @@ function Voxels({ voxels, variant, darkMode, active, hovered, reducedMotion }: {
   const assembled = useRef(reducedMotion)
   const matricesReady = useRef(false)
   const excitement = useRef(0)
-  const { center, scale } = useMemo(() => measure(voxels, variant === 'potato'), [voxels, variant])
+  const { center, scale } = useMemo(() => measure(voxels), [voxels])
   const hasSuspended = useMemo(() => voxels.some((voxel) => voxel.suspended), [voxels])
   const palettes = useMemo(() => {
     const face = new THREE.Color(darkMode ? '#171716' : '#20201e')
@@ -304,10 +267,8 @@ function Voxels({ voxels, variant, darkMode, active, hovered, reducedMotion }: {
     const processNeutral = new THREE.Color(darkMode ? '#aaa9a1' : '#c8c7bf')
     const neck = new THREE.Color(darkMode ? '#c4c4bd' : '#d4d4cc')
     const metal = new THREE.Color(darkMode ? '#8f8f88' : '#9f9f98')
-    const neutralFeet = new THREE.Color(darkMode ? '#aaa9a1' : '#c8c7bf')
     const hover = {
       bulb: new THREE.Color('#ffe34d'), mouth: new THREE.Color('#bd5b56'), ray: new THREE.Color('#ffd000'),
-      potato: new THREE.Color('#b58a5c'), feet: new THREE.Color('#806548'), sprout: new THREE.Color('#76956a'),
       robotBody: new THREE.Color('#e9ece8'), robotPanel: new THREE.Color('#315da8'), robotJoint: new THREE.Color('#3f4650'),
       robotFeet: new THREE.Color('#c94343'), robotAccent: new THREE.Color('#e4b83f'),
       red: new THREE.Color(RBY.red), blue: new THREE.Color(RBY.blue), yellow: new THREE.Color(RBY.yellow),
@@ -319,13 +280,9 @@ function Voxels({ voxels, variant, darkMode, active, hovered, reducedMotion }: {
       else if (variant === 'shape' || variant === 'build' || variant === 'connect') resting = processNeutral
       else if (variant === 'light-bulb' && voxel.part === 'detail') resting = metal
       else if (variant === 'light-bulb' && voxel.part === 'secondary') resting = neck
-      else if (variant === 'potato' && voxel.part === 'feet') resting = neutralFeet
 
       let activeColor = resting
       if (voxel.part === 'mouth') activeColor = hover.mouth
-      else if (voxel.part === 'sprout') activeColor = hover.sprout
-      else if (variant === 'potato' && voxel.part === 'feet') activeColor = hover.feet
-      else if (variant === 'potato' && voxel.part !== 'face') activeColor = hover.potato
       else if (variant === 'light-bulb' && voxel.part === 'body') activeColor = hover.bulb
       else if (variant === 'shape') activeColor = voxel.part === 'body' ? hover.blue
         : voxel.part === 'secondary' ? hover.red : hover.yellow
@@ -393,7 +350,7 @@ function Voxels({ voxels, variant, darkMode, active, hovered, reducedMotion }: {
       const rawProgress = reducedMotion || assembled.current ? 1 : Math.min(1, Math.max(0, (assemblyElapsed.current - delay) / 1.05))
       const progress = 1 - Math.pow(1 - rawProgress, 3)
       const float = active && !reducedMotion && assembled.current && voxel.suspended ? Math.sin(elapsed * 1.15 + index) * 0.18 : 0
-      const wiggle = active && !reducedMotion && assembled.current && variant !== 'shape' && variant !== 'build' && (voxel.part === 'detail' || voxel.part === 'sprout')
+      const wiggle = active && !reducedMotion && assembled.current && variant !== 'shape' && variant !== 'build' && voxel.part === 'detail'
         ? Math.sin(elapsed * 8 + index * 0.8) * 0.16 * excitement.current
         : 0
       const brickGroup = voxel.group ?? 0
