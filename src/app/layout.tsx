@@ -12,14 +12,14 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3001'),
   title: { default: 'Wayne Loh | Building Technology That Earns Trust', template: '%s | Wayne Loh' },
-  description: 'Building technology people understand, trust, and adopt through architecture, engineering, product, and brand thinking.',
+  description: 'Building technology people understand, trust, and adopt through product, engineering, and design.',
   icons: {
     icon: [
       { url: `${basePath}/favicon-light.png`, media: '(prefers-color-scheme: light)', type: 'image/png' },
       { url: `${basePath}/favicon-dark.png`, media: '(prefers-color-scheme: dark)', type: 'image/png' },
     ],
   },
-  openGraph: { type: 'website', title: 'Wayne Loh | Building Technology That Earns Trust', description: 'Building technology people understand, trust, and adopt through architecture, engineering, product, and brand thinking.' },
+  openGraph: { type: 'website', title: 'Wayne Loh | Building Technology That Earns Trust', description: 'Building technology people understand, trust, and adopt through product, engineering, and design.' },
 }
 
 export const viewport: Viewport = {
