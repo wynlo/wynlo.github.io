@@ -263,5 +263,22 @@
       }
     ],
     "referencesMode": "replace"
+  },
+  {
+    "target": "linkedin-banner-bg",
+    "compose": "backdrop",
+    "kind": "backdrop",
+    "game": "social",
+    "aspect": "3:1",
+    "seamless": false,
+    "subject": "a wide, airy background of many tiny floating isometric platforms far away in the sky: about fourteen tiny floating floor slabs scattered across the whole width at different heights, some carrying a tiny isometric object (a server rack, a tree, a bench, a cube, an antenna mast, a lamp post, a small room corner), several tiny isometric clouds between them",
+    "notes": "This is a distant background layer only. No robot, no characters, no dotted paths. Strict isometric projection, the same angle as the studio reference. Clean, even, thin black lines, about 0.15% of the image width, white fills, no solid black fills. Every object is tiny: each platform is about one tenth of the image height, never larger. Lots of white space between them. Spread them evenly across the full width and height, including near the edges. Black and white only. No text anywhere.",
+    "references": [
+      {
+        "ref": "art/generated/linkedin-banner/raw.png",
+        "role": "style"
+      }
+    ],
+    "referencesMode": "replace"
   }
 ]
